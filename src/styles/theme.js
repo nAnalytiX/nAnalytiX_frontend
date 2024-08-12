@@ -69,7 +69,15 @@ export const generateTheme = () => {
 			// (?) no variant to put C7 style (?)
 			caption: { ...typoStyles.C8 },
 		},
-		components: {},
+		components: {
+			MuiIconButton: {
+				styleOverrides: {
+					root: {
+						borderRadius: '7px',
+					},
+				},
+			},
+		},
 	})
 
 	return base_theme
