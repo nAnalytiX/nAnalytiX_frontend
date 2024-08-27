@@ -7,26 +7,26 @@
 import React from 'react'
 
 // NPM Libraries
-import { AppBar, Box, Button, IconButton, Typography } from '@mui/material'
-import { Settings } from '@mui/icons-material'
+import { AppBar, Box, Button, Typography } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWaveSquare } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 // import PropTypes from 'prop-types'
 // import styled from '@emotion/styled'
-// import { useTranslation } from 'react-i18next'
 
 // GraphQL
 // import { useQuery } from 'hooks'
 // import { gql, useMutation } from '@apollo/client'
 
 // Components
+import LanguageSelector from 'components/UI/LanguageSelector'
 
 // Utils
 
 const NavigationBar = () => {
-	// const { t } = useTranslation('', { keyPrefix: 'components.UI.NavigationBar' })
+	const { t } = useTranslation('', { keyPrefix: 'components.Ui.NavigationBar' })
 	const navigate = useNavigate()
 
 	return (
@@ -39,15 +39,17 @@ const NavigationBar = () => {
 							AnalytiX
 						</Typography>
 
-						<Button color="inherit" sx={{ ml: 4 }}>
-							Ver Metodos Numericos
+						<Button onClick={() => navigate('/grapher')} color="inherit" sx={{ ml: 4 }}>
+							{t('actions.grapher')}
+						</Button>
+
+						<Button color="inherit" sx={{ ml: 2 }}>
+							{t('actions.methods')}
 						</Button>
 					</Box>
-					<Box onClick={() => navigate('/')} sx={{ display: 'flex', alignItems: 'center' }}>
-						<Button color="inherit">Login</Button>
-						<IconButton color="inherit" sx={{ ml: 1, mt: '-3px' }}>
-							<Settings fontSize="small" />
-						</IconButton>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+						<LanguageSelector />
+						<Button color="inherit">{t('actions.login')}</Button>
 					</Box>
 				</Box>
 			</AppBar>

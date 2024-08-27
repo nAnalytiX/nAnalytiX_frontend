@@ -77,6 +77,47 @@ export const generateTheme = () => {
 					},
 				},
 			},
+
+			MuiList: {
+				styleOverrides: {
+					root: {
+						padding: 7,
+					},
+				},
+			},
+
+			MuiMenuItem: {
+				styleOverrides: {
+					root: {
+						fontSize: '0.9rem',
+						borderRadius: '7px',
+
+						'&:hover': {
+							backgroundColor: `${PRIMARY[50]} !important`,
+						},
+
+						'&.Mui-selected': {
+							backgroundColor: PRIMARY[300],
+							color: WHITE,
+							'&:hover': {
+								backgroundColor: PRIMARY[300],
+								opacity: 0.9,
+							},
+						},
+					},
+					dense: {
+						padding: '6px 10px ',
+					},
+				},
+			},
+
+			MuiPaper: {
+				styleOverrides: {
+					root: {
+						backfaceVisibility: 'hidden !important',
+					},
+				},
+			},
 		},
 	})
 

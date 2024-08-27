@@ -77,6 +77,7 @@ const AppRoutes = () => {
 							</div>
 						}
 					/>
+					<Route path="/grapher" element={<div>Hola Mundo</div>} />
 				</Routes>
 			</MainWrapper>
 		</Box>
