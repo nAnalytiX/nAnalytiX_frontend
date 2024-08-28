@@ -21,31 +21,32 @@ import { useTranslation } from 'react-i18next'
 // import { gql, useMutation } from '@apollo/client'
 
 // Components
-import LanguageSelector from 'components/UI/LanguageSelector'
+import LanguageSelector from 'components/UI/NavigationBar/LanguageSelector'
+import MethodsList from './MethodsList'
 
 // Utils
 
 const NavigationBar = () => {
-	const { t } = useTranslation('', { keyPrefix: 'components.Ui.NavigationBar' })
+	const { t } = useTranslation('', { keyPrefix: 'components.NavigationBar' })
 	const navigate = useNavigate()
 
 	return (
 		<Box sx={{ flexGrow: 0, flex: 0 }}>
 			<AppBar position="static">
 				<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2, px: 3 }}>
-					<Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer' }}>
-						<FontAwesomeIcon icon={faWaveSquare} style={{ fontSize: '1.8rem', marginTop: '1px' }} />
-						<Typography variant="h6" component="div" sx={{ ml: 1, flexGrow: 1, fontSize: '1.7rem' }}>
-							AnalytiX
-						</Typography>
+					<Box sx={{ display: 'flex' }}>
+						<Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer' }}>
+							<FontAwesomeIcon icon={faWaveSquare} style={{ fontSize: '1.8rem', marginTop: '1px' }} />
+							<Typography variant="h6" component="div" sx={{ ml: 1, flexGrow: 1, fontSize: '1.7rem' }}>
+								AnalytiX
+							</Typography>
+						</Box>
 
 						<Button onClick={() => navigate('/grapher')} color="inherit" sx={{ ml: 4 }}>
 							{t('actions.grapher')}
 						</Button>
 
-						<Button color="inherit" sx={{ ml: 2 }}>
-							{t('actions.methods')}
-						</Button>
+						<MethodsList />
 					</Box>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<LanguageSelector />
