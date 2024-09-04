@@ -118,6 +118,21 @@ export const generateTheme = () => {
 					},
 				},
 			},
+
+			MuiCard: {
+				styleOverrides: {
+					root: {
+						boxShadow: 'none',
+					},
+				},
+			},
+			MuiCardContent: {
+				styleOverrides: {
+					root: {
+						padding: '1rem !important',
+					},
+				},
+			},
 		},
 	})
 

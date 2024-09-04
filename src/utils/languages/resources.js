@@ -1,3 +1,5 @@
+import Grapher_T from 'components/Grapher/translation'
+import Graph_T from 'components/Grapher/Graph/translation'
 import LanguageSelector_T from 'components/UI/NavigationBar/LanguageSelector/translation'
 import MethodsList_T from 'components/UI/NavigationBar/MethodsList/translation'
 import NavigationBar_T from 'components/UI/NavigationBar/translation'
@@ -45,6 +47,8 @@ const es = {
 			NavigationBar: NavigationBar_T.es,
 			MethodsList: MethodsList_T.es,
 			LanguageSelector: LanguageSelector_T.es,
+			Grapher: Grapher_T.es,
+			Graph: Graph_T.es,
 		},
 	},
 }
@@ -55,6 +59,8 @@ const en = {
 			NavigationBar: NavigationBar_T.en,
 			MethodsList: MethodsList_T.en,
 			LanguageSelector: LanguageSelector_T.en,
+			Grapher: Grapher_T.en,
+			Graph: Graph_T.en,
 		},
 	},
 }

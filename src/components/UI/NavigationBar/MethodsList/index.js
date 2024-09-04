@@ -31,8 +31,6 @@ const MethodsList = () => {
 
 	const open = Boolean(anchorEl)
 
-	console.log(methods_list)
-
 	return (
 		<React.Fragment>
 			<Button color="inherit" sx={{ ml: 2 }} onClick={(event) => setAnchorEl(event.currentTarget)}>

@@ -55,5 +55,6 @@ export default {
 		Bg: '#e7ebf0',
 		divider: '#969ca8',
 		border: 'rgba(0, 0, 0, 0.23)',
+		purple: '#8067dc',
 	},
 }

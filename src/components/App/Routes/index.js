@@ -14,6 +14,7 @@ import styled from '@emotion/styled'
 
 // Components
 import NavigationBar from 'components/UI/NavigationBar'
+import Grapher from 'components/Grapher'
 
 const MainWrapper = styled.div`
 	height: 100% !important;
@@ -77,7 +78,7 @@ const AppRoutes = () => {
 							</div>
 						}
 					/>
-					<Route path="/grapher" element={<div>Hola Mundo</div>} />
+					<Route path="/grapher" element={<Grapher />} />
 				</Routes>
 			</MainWrapper>
 		</Box>

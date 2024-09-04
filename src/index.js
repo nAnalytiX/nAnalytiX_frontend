@@ -4,6 +4,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 
 import '@fontsource-variable/rubik'
+import 'bootstrap/dist/css/bootstrap.css'
 import App from 'components/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
