@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Box } from '@mui/material'
 
 const GraphContainer = styled.div`
 	width: 100%;
@@ -46,4 +47,15 @@ const GraphContainer = styled.div`
 	}
 `
 
-export default { GraphContainer }
+const SettingsFieldContainer = styled(Box)`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+
+	.MuiFormControl-root {
+		max-width: 80px;
+	}
+`
+
+export default { GraphContainer, SettingsFieldContainer }

@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 // NPM Libraries
 import functionPlot from 'function-plot'
-import { Box, Card, CardContent, IconButton, Menu, MenuItem, Switch, Typography } from '@mui/material'
+import { Box, Card, CardContent, IconButton, Popover, Switch, TextField, Typography } from '@mui/material'
 import { Settings } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 // import PropTypes from 'prop-types'
@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 import colors from 'styles/colors'
 import S from './styles'
 
-const functions_colors = [
+export const functions_colors = [
 	colors.PRIMARY['500'],
 	colors.ERROR['500'],
 	colors.INFO['500'],
@@ -31,13 +31,36 @@ const functions_colors = [
 	colors.COMPLEMENTARY['purple'],
 ]
 
+const DomainInput = ({ value, handleUpdate }) => {
+	const [internal_value, setInternalValue] = useState(value)
+
+	return (
+		<TextField
+			value={internal_value}
+			onChange={(e) => setInternalValue(e.target.value)}
+			onBlur={() => {
+				const updated = handleUpdate(internal_value)
+
+				if (!updated) setInternalValue(value)
+			}}
+			type="number"
+			size="small"
+			variant="outlined"
+			hiddenLabel
+		/>
+	)
+}
+
 const Graph = ({ functions = [] }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Graph' })
+	console.log(functions)
 
 	const node = useRef(null)
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [width, setwidth] = useState(0)
 	const [grid, setGrid] = useState(true)
+	const [x_domain, setXDomain] = useState([-10, 10])
+	const [y_domain, setYDomain] = useState([-10, 10])
 
 	useEffect(() => {
 		const observer = new ResizeObserver((entries) => {
@@ -58,8 +81,8 @@ const Graph = ({ functions = [] }) => {
 				grid,
 				width: width,
 				height: width * (4 / 6),
-				yAxis: { domain: [-10, 10] },
-				xAxis: { domain: [-10, 10] },
+				yAxis: { domain: y_domain },
+				xAxis: { domain: x_domain },
 			}
 
 			const instance = functionPlot(options)
@@ -69,7 +92,7 @@ const Graph = ({ functions = [] }) => {
 
 			functionPlot(options)
 		}
-	}, [node, width, grid, functions])
+	}, [node, width, grid, functions, y_domain, x_domain])
 
 	const handleOpenSettings = (event) => setAnchorEl(event.target)
 	const handleCloseSettings = () => setAnchorEl(null)
@@ -78,6 +101,26 @@ const Graph = ({ functions = [] }) => {
 		if (functions.length === 0) []
 
 		return functions.map((fn, index) => ({ fn, color: functions_colors[index] }))
+	}
+
+	const handleChangeDomain = (domain, axis, val, callback) => {
+		let changed = false
+		let new_domain = [...domain]
+		const new_value = parseFloat(val)
+
+		if (new_value <= 100 && new_value >= -100) {
+			if (axis === 0) {
+				if (new_value < domain[1]) changed = true
+			} else {
+				if (new_value > domain[0]) changed = true
+			}
+
+			if (changed) new_domain[axis] = new_value
+		}
+
+		callback([...new_domain])
+
+		return changed
 	}
 
 	return (
@@ -93,7 +136,7 @@ const Graph = ({ functions = [] }) => {
 				</IconButton>
 				<S.GraphContainer ref={node} />
 
-				<Menu
+				<Popover
 					open={!!anchorEl}
 					anchorEl={anchorEl}
 					onClose={handleCloseSettings}
@@ -106,17 +149,49 @@ const Graph = ({ functions = [] }) => {
 						horizontal: 'right',
 					}}
 				>
-					<Box sx={{ width: '170px', p: 1 }}>
+					<Box sx={{ width: '200px', p: 2 }}>
 						<Typography variant="subtitle1" align="center">
 							{t('settings.title')}
 						</Typography>
 
-						<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2 }}>
+						<S.SettingsFieldContainer>
+							<Typography variant="body2">x Max</Typography>
+							<DomainInput
+								value={x_domain[1]}
+								handleUpdate={(new_value) => handleChangeDomain(x_domain, 1, new_value, setXDomain)}
+							/>
+						</S.SettingsFieldContainer>
+
+						<S.SettingsFieldContainer>
+							<Typography variant="body2">x Min</Typography>
+							<DomainInput
+								value={x_domain[0]}
+								handleUpdate={(new_value) => handleChangeDomain(x_domain, 0, new_value, setXDomain)}
+							/>
+						</S.SettingsFieldContainer>
+
+						<S.SettingsFieldContainer>
+							<Typography variant="body2">y Max</Typography>
+							<DomainInput
+								value={y_domain[1]}
+								handleUpdate={(new_value) => handleChangeDomain(y_domain, 1, new_value, setYDomain)}
+							/>
+						</S.SettingsFieldContainer>
+
+						<S.SettingsFieldContainer>
+							<Typography variant="body2">y Min</Typography>
+							<DomainInput
+								value={y_domain[0]}
+								handleUpdate={(new_value) => handleChangeDomain(y_domain, 0, new_value, setYDomain)}
+							/>
+						</S.SettingsFieldContainer>
+
+						<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 1 }}>
 							<Typography variant="body2">{t('settings.grid')}</Typography>
 							<Switch checked={grid} onChange={() => setGrid(!grid)} />
 						</Box>
 					</Box>
-				</Menu>
+				</Popover>
 			</CardContent>
 		</Card>
 	)
