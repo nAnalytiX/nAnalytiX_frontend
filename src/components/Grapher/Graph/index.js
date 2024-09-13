@@ -20,16 +20,7 @@ import { useTranslation } from 'react-i18next'
 // Components
 
 // Utils
-import colors from 'styles/colors'
 import S from './styles'
-
-export const functions_colors = [
-	colors.PRIMARY['500'],
-	colors.ERROR['500'],
-	colors.INFO['500'],
-	colors.COMPLEMENTARY['orange'],
-	colors.COMPLEMENTARY['purple'],
-]
 
 const DomainInput = ({ value, handleUpdate }) => {
 	const [internal_value, setInternalValue] = useState(value)
@@ -53,7 +44,6 @@ const DomainInput = ({ value, handleUpdate }) => {
 
 const Graph = ({ functions = [] }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Graph' })
-	console.log(functions)
 
 	const node = useRef(null)
 	const [anchorEl, setAnchorEl] = useState(null)
@@ -100,7 +90,19 @@ const Graph = ({ functions = [] }) => {
 	const format_data = (functions) => {
 		if (functions.length === 0) []
 
-		return functions.map((fn, index) => ({ fn, color: functions_colors[index] }))
+		return functions.reduce((acc, current) => {
+			if (!current.disabled)
+				acc = [
+					...acc,
+					{
+						fn: current.fn,
+						color: current.color,
+						graphType: 'polyline',
+					},
+				]
+
+			return acc
+		}, [])
 	}
 
 	const handleChangeDomain = (domain, axis, val, callback) => {
@@ -126,14 +128,11 @@ const Graph = ({ functions = [] }) => {
 	return (
 		<Card>
 			<CardContent sx={{ p: '0 !important' }}>
-				<IconButton
-					onClick={handleOpenSettings}
-					color="primary"
-					size="small"
-					sx={{ float: 'right', mr: '10px', mb: '-7px' }}
-				>
-					<Settings />
-				</IconButton>
+				<Box sx={{ float: 'right', mr: '10px', mb: '-7px' }}>
+					<IconButton onClick={handleOpenSettings} color="primary" size="small">
+						<Settings />
+					</IconButton>
+				</Box>
 				<S.GraphContainer ref={node} />
 
 				<Popover

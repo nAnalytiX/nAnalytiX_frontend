@@ -126,10 +126,20 @@ export const generateTheme = () => {
 					},
 				},
 			},
+
 			MuiCardContent: {
 				styleOverrides: {
 					root: {
 						padding: '1rem !important',
+					},
+				},
+			},
+
+			MuiInputBase: {
+				styleOverrides: {
+					input: {
+						padding: '14px !important',
+						paddingLeft: '0 !important',
 					},
 				},
 			},

@@ -3,6 +3,7 @@ import Graph_T from 'components/Grapher/Graph/translation'
 import LanguageSelector_T from 'components/UI/NavigationBar/LanguageSelector/translation'
 import MethodsList_T from 'components/UI/NavigationBar/MethodsList/translation'
 import NavigationBar_T from 'components/UI/NavigationBar/translation'
+import FunctionInput_T from 'components/UI/FunctionInput/translation'
 
 const es = {
 	translation: {
@@ -49,6 +50,7 @@ const es = {
 			LanguageSelector: LanguageSelector_T.es,
 			Grapher: Grapher_T.es,
 			Graph: Graph_T.es,
+			FunctionInput: FunctionInput_T.es,
 		},
 	},
 }
@@ -61,6 +63,7 @@ const en = {
 			LanguageSelector: LanguageSelector_T.en,
 			Grapher: Grapher_T.en,
 			Graph: Graph_T.en,
+			FunctionInput: FunctionInput_T.en,
 		},
 	},
 }
