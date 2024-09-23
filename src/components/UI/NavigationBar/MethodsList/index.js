@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 // NPM Libraries
 import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 // import PropTypes from 'prop-types'
 // import styled from '@emotion/styled'
 
@@ -25,9 +26,16 @@ const MethodsList = () => {
 	const { t } = useTranslation('', { keyPrefix: 'components.MethodsList' })
 	const { t: t_methods } = useTranslation('', { keyPrefix: 'common.methods' })
 
+	const navigate = useNavigate()
+
 	const [anchorEl, setAnchorEl] = useState(null)
 
 	const handleClose = () => setAnchorEl(null)
+
+	const handleCLick = (method) => {
+		navigate(`/methods/${method.replace('_', '-')}`)
+		handleClose()
+	}
 
 	const open = Boolean(anchorEl)
 
@@ -45,7 +53,9 @@ const MethodsList = () => {
 								{t_methods(`${list}._`)}
 							</Typography>
 							{methods_list[list].map((method, method_index) => (
-								<MenuItem key={method_index}>{t_methods(`${list}.${method}`)}</MenuItem>
+								<MenuItem key={method_index} onClick={() => handleCLick(method)}>
+									{t_methods(`${list}.${method}`)}
+								</MenuItem>
 							))}
 						</Box>
 					))}

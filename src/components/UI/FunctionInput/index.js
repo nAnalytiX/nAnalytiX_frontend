@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 // NPM Libraries
 import styled from '@emotion/styled'
 import * as math from 'mathjs'
-import { Button, InputAdornment, TextField } from '@mui/material'
+import { Button, InputAdornment, InputLabel, TextField } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 // import PropTypes from 'prop-types'
 
@@ -76,6 +76,7 @@ const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_
 
 	return (
 		<FieldContainer>
+			<InputLabel>{t('label')}</InputLabel>
 			<TextField
 				value={value}
 				onChange={(e) => onChange(e.target.value)}

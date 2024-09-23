@@ -4,6 +4,8 @@ import LanguageSelector_T from 'components/UI/NavigationBar/LanguageSelector/tra
 import MethodsList_T from 'components/UI/NavigationBar/MethodsList/translation'
 import NavigationBar_T from 'components/UI/NavigationBar/translation'
 import FunctionInput_T from 'components/UI/FunctionInput/translation'
+import Methods_T from 'components/Methods/translation'
+import IncrementalSearch_T from 'components/Methods/IncrementalSearch/translation'
 
 const es = {
 	translation: {
@@ -51,6 +53,8 @@ const es = {
 			Grapher: Grapher_T.es,
 			Graph: Graph_T.es,
 			FunctionInput: FunctionInput_T.es,
+			Methods: Methods_T.es,
+			IncrementalSearch: IncrementalSearch_T.es,
 		},
 	},
 }
@@ -64,6 +68,8 @@ const en = {
 			Grapher: Grapher_T.en,
 			Graph: Graph_T.en,
 			FunctionInput: FunctionInput_T.en,
+			Methods: Methods_T.en,
+			IncrementalSearch: IncrementalSearch_T.en,
 		},
 	},
 }

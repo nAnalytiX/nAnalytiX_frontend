@@ -15,6 +15,7 @@ import styled from '@emotion/styled'
 // Components
 import NavigationBar from 'components/UI/NavigationBar'
 import Grapher from 'components/Grapher'
+import IncrementalSearch from 'components/Methods/IncrementalSearch'
 
 const MainWrapper = styled.div`
 	height: 100% !important;
@@ -78,7 +79,11 @@ const AppRoutes = () => {
 							</div>
 						}
 					/>
+
 					<Route path="/grapher" element={<Grapher />} />
+
+					{/* Methods */}
+					<Route path="/methods/incremental-search" element={<IncrementalSearch />} />
 				</Routes>
 			</MainWrapper>
 		</Box>

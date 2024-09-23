@@ -4,6 +4,7 @@
 
 const FunctionInput_T = {
 	es: {
+		label: 'Función:',
 		placeholder: 'Nueva Entrada...',
 		actions: {
 			save: 'Guardar Función',
@@ -12,6 +13,7 @@ const FunctionInput_T = {
 		},
 	},
 	en: {
+		function: 'Function:',
 		placeholder: 'New Entry...',
 		actions: {
 			save: 'Save Function',
