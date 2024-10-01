@@ -46,10 +46,12 @@ const UiLanguageSelector = () => {
 		en: { name: 'Ingles', icon: EnglishFlag },
 	}
 
+	const formated_selected_language = selected_language?.split('-')[0]
+
 	return (
 		<React.Fragment>
 			<IconButton onClick={(event) => setAnchorEl(event.currentTarget)} color="inherit" sx={{ ml: 1, mt: '-3px' }}>
-				<img src={language_list[selected_language].icon} style={{ height: '20px', marginRight: '4px' }} />
+				<img src={language_list[formated_selected_language].icon} style={{ height: '20px', marginRight: '4px' }} />
 				<ArrowDropDown />
 			</IconButton>
 			<Menu
