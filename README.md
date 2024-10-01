@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with nAnalytiX, THE Numerical Analysis Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Web app contains numeriacal methods to solve different problems.
+
+[https://nanalytix-frontend.onrender.com/](Application Page)
 
 ## Available Scripts
 
