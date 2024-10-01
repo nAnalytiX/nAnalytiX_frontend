@@ -36,7 +36,8 @@ const IncrementalSearch_T = {
 			10: 'Method to perform the preliminary checks',
 			11: 'Validate that the Delta is greater than zero',
 			12: 'Validate that the Maximum Number of Iterations is greater than zero',
-			13: 'Validate that the Function is valid',
+			13: 'Validate that the Initial value (x0) is a valid number',
+			14: 'Validate that the Function is valid',
 		},
 	},
 }

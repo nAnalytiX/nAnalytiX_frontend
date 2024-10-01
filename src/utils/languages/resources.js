@@ -6,6 +6,15 @@ import NavigationBar_T from 'components/UI/NavigationBar/translation'
 import FunctionInput_T from 'components/UI/FunctionInput/translation'
 import Methods_T from 'components/Methods/translation'
 import IncrementalSearch_T from 'components/Methods/IncrementalSearch/translation'
+import Bisection_T from 'components/Methods/Bisection/translation'
+import FalsePosition_T from 'components/Methods/FalsePosition/translation'
+import FixedPoint_T from 'components/Methods/FixedPoint/translation'
+import MultipleRoots_T from 'components/Methods/MultipleRoots/translation'
+import Newton_T from 'components/Methods/Newton/translation'
+import Secant_T from 'components/Methods/Secant/translation'
+import GaussSimple_T from 'components/Methods/GaussSimple/translation'
+import GaussPartial_T from 'components/Methods/GaussPartial/translation'
+import GaussTotal_T from 'components/Methods/GaussTotal/translation'
 
 const es = {
 	translation: {
@@ -15,17 +24,17 @@ const es = {
 					_: 'Sistemas de Ecuaciones No Lineales',
 					incremental_search: 'Búsqueda Incremental',
 					bisection: 'Método de Bisección',
-					false_rule: 'Regla Falsa',
+					false_position: 'Regla Falsa',
 					newton: 'Método de Newton',
-					multi_roots: 'Método de las Raíces Múltiples',
+					multiple_roots: 'Método de las Raíces Múltiples',
 					secant: 'Método de la Secante',
 					fixed_point: 'Punto Fijo',
 				},
 				linear_equations: {
 					_: 'Sistemas de Ecuaciones Lineales',
 					gauss_simple: 'Eliminación Gaussiana Simple',
-					gauss_parcial: 'Eliminación Gaussiana con Pivote Parcial',
-					gauss_total: 'Eliminación Gaussiana con Pivote Total',
+					gauss_partial: 'Eliminación Gaussiana (Pivoteo Parcial)',
+					gauss_total: 'Eliminación Gaussiana (Pivoteo Total)',
 					simple_lu: 'Factorización LU Simple',
 					pivot_lu: 'Factorización LU con Pivote Parcial',
 					crout: 'Método Crout',
@@ -55,6 +64,15 @@ const es = {
 			FunctionInput: FunctionInput_T.es,
 			Methods: Methods_T.es,
 			IncrementalSearch: IncrementalSearch_T.es,
+			Bisection: Bisection_T.es,
+			FalsePosition: FalsePosition_T.es,
+			FixedPoint: FixedPoint_T.es,
+			MultipleRoots: MultipleRoots_T.es,
+			Newton: Newton_T.es,
+			Secant: Secant_T.es,
+			GaussSimple: GaussSimple_T.es,
+			GaussPartial: GaussPartial_T.es,
+			GaussTotal: GaussTotal_T.es,
 		},
 	},
 }
@@ -70,6 +88,15 @@ const en = {
 			FunctionInput: FunctionInput_T.en,
 			Methods: Methods_T.en,
 			IncrementalSearch: IncrementalSearch_T.en,
+			Bisection: Bisection_T.en,
+			FalsePosition: FalsePosition_T.en,
+			FixedPoint: FixedPoint_T.en,
+			MultipleRoots: MultipleRoots_T.en,
+			Newton: Newton_T.en,
+			Secant: Secant_T.en,
+			GaussSimple: GaussSimple_T.en,
+			GaussPartial: GaussPartial_T.en,
+			GaussTotal: GaussTotal_T.en,
 		},
 	},
 }

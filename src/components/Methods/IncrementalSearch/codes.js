@@ -8,72 +8,72 @@ export const incrementalSearchRuby = (translate) =>
  #
 ##
 
-def incremental_search(func, x0, delta, n_max = 100)
-  # ${translate('code.2')}
-  errors = validations(func, x0, delta, n_max)
+def incremental_search(func, x0, delta, nmax = 100)
+  @func = Methods::Utils::Commons.format_function(func)
+  @x0 = x0
+  @delta = delta
+  @nmax = nmax
 
-  return { data: [], errors: } unless errors.empty?
+  @iterations = []
+  @errors = []
+
+  # ${translate('code.2')}
+  initial_validations()
+
+  return { iterations: [], errors: @errors } unless @errors.empty?
 
   #  ${translate('code.3')}
-  f = ->(x) { eval(func) }
-  fx0 = f.call(x0)
+  f = ->(x) { eval(@func) }
+  _Fx0 = f.call(@x0)
+  x0 = @x0
 
   # ${translate('code.4')}
-  if fx0 == 0
-    return { data: [], errors: }
+  if _Fx0 == 0
+    return { iterations: [], errors: }
   end
 
-  data = []
-
   # ${translate('code.5')}
-  (1..n_max).each do |i|
+  (1..@nmax).each do |i|
     # ${translate('code.6')}
-    x1 = x0 + delta
+    x1 = x0 + @delta
+
     begin
-      fx1 = f.call(x1)
+      _Fx1 = f.call(x1)
     rescue
+      ap "Error al evaluar f(x1): #{e.message}"
     end
 
     # ${translate('code.7')}
-    if fx0 * fx1 < 0
-      data << { x0:, x1: }
+    if _Fx0 * _Fx1 <= 0
+      @iterations << { x0:, x1: }
     end
 
     # ${translate('code.8')}
     x0 = x1
-    fx0 = fx1
+    _Fx0 = _Fx1
   end
 
   # ${translate('code.9')}
-  if data.empty?
-    errors << 'not_found'
+  if @iterations.empty?
+    @errors << 'not_found'
   end
 
-  return { data:, errors: }
+  return { iterations: @iterations, errors: @errors }
 end
 
 private
 
 # ${translate('code.10')}
-def validations func, x0, delta, n_max
-  errors = []
-
+def initial_validations
   # ${translate('code.11')}
-	if delta == 0
-    errors << 'delta'
-  end
-
+  @errors = Methods::Utils::Validations.delta @delta, @errors
   # ${translate('code.12')}
-  if n_max <= 0
-    errors << 'n_max'
-  end
-
+  @errors = Methods::Utils::Validations.max_iterations @nmax, @errors
   # ${translate('code.13')}
-	begin
-    f = ->(x) { eval(func) }
-  rescue
-    errors << 'function_eval'
-  end
+  @errors = Methods::Utils::Validations.numeric_value @x0, 'x0', @errors
 
-  errors
+  return unless @errors.empty?
+
+  # ${translate('code.14')}
+  @errors = Methods::Utils::Validations.function @func, nil, { x0: @x0 }, @errors
 end`

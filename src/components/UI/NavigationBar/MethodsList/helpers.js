@@ -5,16 +5,16 @@
 const non_linear_equations = [
 	'incremental_search',
 	'bisection',
-	'false_rule',
+	'false_position',
 	'newton',
-	'multi_roots',
+	'multiple_roots',
 	'secant',
 	'fixed_point',
 ]
 
 const linear_equations = [
 	'gauss_simple',
-	'gauss_parcial',
+	'gauss_partial',
 	'gauss_total',
 	'simple_lu',
 	'pivot_lu',

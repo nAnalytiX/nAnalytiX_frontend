@@ -42,11 +42,11 @@ const NavigationBar = () => {
 							</Typography>
 						</Box>
 
+						<MethodsList />
+
 						<Button onClick={() => navigate('/grapher')} color="inherit" sx={{ ml: 4 }}>
 							{t('actions.grapher')}
 						</Button>
-
-						<MethodsList />
 					</Box>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<LanguageSelector />
