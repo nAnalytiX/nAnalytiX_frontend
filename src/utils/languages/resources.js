@@ -79,6 +79,44 @@ const es = {
 
 const en = {
 	translation: {
+		common: {
+			methods: {
+				non_linear_equations: {
+					_: 'Non-Linear Equation Systems',
+					incremental_search: 'Incremental Search',
+					bisection: 'Bisection Method',
+					false_position: 'False Position',
+					newton: "Newton's Method",
+					multiple_roots: 'Multiple Roots Method',
+					secant: 'Secant Method',
+					fixed_point: 'Fixed Point',
+				},
+				linear_equations: {
+					_: 'Linear Equation Systems',
+					gauss_simple: 'Gaussian Elimination',
+					gauss_partial: 'Gaussian Elimination (Partial Pivoting)',
+					gauss_total: 'Gaussian Elimination (Total Pivoting)',
+					simple_lu: 'LU Factorization',
+					pivot_lu: 'LU Factorization (Partial Pivoting)',
+					crout: "Crout's Method",
+					doolittle: "Doolittle's Method",
+					choolesky: "Cholesky's Method",
+					jacobi: "Jacobi's Method",
+					gauss_seidel: 'Gauss-Seidel Method',
+					sor: 'SOR Method',
+					vandermonde: 'Vandermonde Method',
+				},
+				interpolation: {
+					_: 'Interpolation',
+					diff_divide: 'Divided Differences Method',
+					lagrange: 'Lagrange',
+					linear_spline: 'Linear Spline',
+					square_spline: 'Quadratic Spline',
+					cubic_spline: 'Cubic Spline',
+				},
+			},
+		},
+
 		components: {
 			NavigationBar: NavigationBar_T.en,
 			MethodsList: MethodsList_T.en,
