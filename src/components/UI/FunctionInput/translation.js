@@ -13,7 +13,7 @@ const FunctionInput_T = {
 		},
 	},
 	en: {
-		function: 'Function:',
+		label: 'Function:',
 		placeholder: 'New Entry...',
 		actions: {
 			save: 'Save Function',

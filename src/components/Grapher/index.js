@@ -136,7 +136,7 @@ const Grapher = () => {
 											onClick={() => handleEdit(index, { ...fn, disabled: !fn.disabled })}
 											style={{ backgroundColor: fn.disabled ? 'transparent' : fn.color }}
 										/>
-										<Typography sx={{ mt: '1px' }}>f(x) = {fn.fn}</Typography>
+										<Typography sx={{ mt: '1px', letterSpacing: '0.03em' }}>f(x) = {fn.fn}</Typography>
 									</Box>
 
 									<div>

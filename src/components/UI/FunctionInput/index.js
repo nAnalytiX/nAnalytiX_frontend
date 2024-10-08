@@ -34,6 +34,56 @@ const FieldContainer = styled.div`
 	}
 `
 
+const sin_values = ['sen', 'zen']
+const exp_values = ['e']
+
+const valid_nodes = ['sin', 'cos', 'tan', 'sqrt', 'exp', 'ln', 'log', 'x']
+const separation_nodes = ['+', '-', '/', '*', ')', '(']
+
+const formatter = (string = '') => {
+	let format_string = string.toLowerCase().split('')
+
+	let nodes = []
+
+	const result = format_string.reduce((acc, current) => {
+		if (separation_nodes.includes(current) || current == ' ') {
+			nodes = [...nodes, acc, current]
+
+			acc = ''
+		} else {
+			acc += current
+		}
+
+		return acc
+	}, '')
+
+	nodes = [...nodes, result].filter((node) => node != '')
+
+	nodes = nodes.map((curr, index) => {
+		if (curr === ' ') return curr
+
+		if ([...valid_nodes, ...separation_nodes].includes(curr) || Number(curr).isNaN || curr.includes('x')) {
+			return curr
+		}
+
+		if (nodes[index + 1] === '(') {
+			if (sin_values.includes(curr)) {
+				return 'sin'
+			} else if (exp_values.includes(curr)) {
+				return 'exp'
+			}
+		}
+
+		return Number(curr)
+	})
+
+	if (nodes.includes(NaN)) {
+		return 'error'
+	} else {
+		return nodes.join('')
+	}
+}
+
 const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_button_text }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.FunctionInput' })
 
@@ -45,13 +95,23 @@ const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_
 	}, [default_value])
 
 	const onChange = (equation) => {
-		setValue(equation)
+		const formated_equation = formatter(equation)
+		console.log(equation)
+		console.log(formated_equation)
+
+		if (formated_equation === 'error') {
+			setValue(equation)
+			setError(true)
+			return
+		} else {
+			setValue(formated_equation)
+		}
 
 		try {
-			math.parse(equation)
+			math.parse(formated_equation)
 
 			const scope = { x: 1 }
-			math.evaluate(equation, scope)
+			math.evaluate(formated_equation, scope)
 
 			setError(false)
 
@@ -104,7 +164,7 @@ const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_
 						size="small"
 						variant="contained"
 						color="info"
-						onClick={onSave}
+						onClick={onCancel}
 						sx={{ opacity: value.length > 0 ? 1 : 0 }}
 					>
 						{t('actions.clear')}
