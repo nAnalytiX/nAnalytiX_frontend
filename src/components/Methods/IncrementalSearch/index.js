@@ -20,19 +20,19 @@ import { useTranslation } from 'react-i18next'
 import Codes from '../Codes'
 import Methods from '..'
 import { incrementalSearchRuby } from './codes'
+import IncrementalSearchForm from './Form'
 
 // Utils
 
 const MethodLogic = () => {
 	return (
 		<div className="row" style={{ flexGrow: 1 }}>
-			<div className="col-12 col-lg-6">
-				<Card>
-					<CardContent>Parametros</CardContent>
-				</Card>
+			<div className="col-12 col-lg-5">
+				<Card></Card>
+				<IncrementalSearchForm />
 			</div>
 
-			<div className="col-12 col-lg-6">
+			<div className="col-12 col-lg-7">
 				<Card>
 					<CardContent>Parametros</CardContent>
 				</Card>

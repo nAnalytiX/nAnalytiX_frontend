@@ -9,7 +9,8 @@ import React, { useEffect, useState } from 'react'
 // NPM Libraries
 import styled from '@emotion/styled'
 import * as math from 'mathjs'
-import { Button, InputAdornment, InputLabel, TextField } from '@mui/material'
+import { Box, Button, Grid, InputAdornment, Tooltip, Typography, TextField, FormHelperText } from '@mui/material'
+import { Info } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 // import PropTypes from 'prop-types'
 
@@ -21,8 +22,9 @@ import { useTranslation } from 'react-i18next'
 
 // Utils
 // import S from './styles'
-import { Box } from '@mui/system'
 import { Warning } from '@mui/icons-material'
+import { formatter } from './helpers'
+import { useField, useFormikContext } from 'formik'
 
 const FieldContainer = styled.div`
 	.MuiInputBase-root {
@@ -34,77 +36,19 @@ const FieldContainer = styled.div`
 	}
 `
 
-const sin_values = ['sen', 'zen']
-const exp_values = ['e']
-
-const valid_nodes = ['sin', 'cos', 'tan', 'sqrt', 'exp', 'ln', 'log', 'x']
-const separation_nodes = ['+', '-', '/', '*', ')', '(']
-
-const formatter = (string = '') => {
-	let format_string = string.toLowerCase().split('')
-
-	let nodes = []
-
-	const result = format_string.reduce((acc, current) => {
-		if (separation_nodes.includes(current) || current == ' ') {
-			nodes = [...nodes, acc, current]
-
-			acc = ''
-		} else {
-			acc += current
-		}
-
-		return acc
-	}, '')
-
-	nodes = [...nodes, result].filter((node) => node != '')
-
-	nodes = nodes.map((curr, index) => {
-		if (curr === ' ') return curr
-
-		if ([...valid_nodes, ...separation_nodes].includes(curr) || Number(curr).isNaN || curr.includes('x')) {
-			return curr
-		}
-
-		if (nodes[index + 1] === '(') {
-			if (sin_values.includes(curr)) {
-				return 'sin'
-			} else if (exp_values.includes(curr)) {
-				return 'exp'
-			}
-		}
-
-		return Number(curr)
-	})
-
-	if (nodes.includes(NaN)) {
-		return 'error'
-	} else {
-		return nodes.join('')
-	}
-}
-
-const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_button_text }) => {
+const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, main_button_text }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.FunctionInput' })
+	const [internal_error, setInternalError] = useState(false)
 
-	const [value, setValue] = useState('')
-	const [error, setError] = useState(false)
-
-	useEffect(() => {
-		default_value && setValue(default_value)
-	}, [default_value])
-
-	const onChange = (equation) => {
+	const internalOnChange = (equation) => {
 		const formated_equation = formatter(equation)
-		console.log(equation)
-		console.log(formated_equation)
 
 		if (formated_equation === 'error') {
-			setValue(equation)
-			setError(true)
+			onChange(equation)
+			setInternalError(true)
 			return
 		} else {
-			setValue(formated_equation)
+			onChange(formated_equation)
 		}
 
 		try {
@@ -113,17 +57,107 @@ const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_
 			const scope = { x: 1 }
 			math.evaluate(formated_equation, scope)
 
-			setError(false)
-
-			return true
+			setInternalError(false)
 		} catch (e) {
-			setError(true)
-			return false
+			setInternalError(true)
 		}
 	}
 
+	const has_errors = internal_error || error
+
+	return (
+		<FieldContainer>
+			<Grid container sx={{ alignItems: 'center' }}>
+				<Grid item xs={4}>
+					<Typography variant="caption" color={has_errors ? 'error' : ''} sx={{ fontSize: '0.95rem' }}>
+						{t('label')}
+					</Typography>
+				</Grid>
+
+				<Grid item xs={8}>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+						<TextField
+							value={value}
+							onChange={(e) => internalOnChange(e.target.value)}
+							onKeyDown={(e) => {
+								if (e.keyCode == 13) onSave(value)
+							}}
+							sx={{ width: '100%', paddingLeft: 0 }}
+							placeholder={t('placeholder')}
+							InputProps={{
+								sx: { paddingLeft: 0 },
+								startAdornment: <InputAdornment position="start">f(x)</InputAdornment>,
+								endAdornment: has_errors ? (
+									<InputAdornment position="end">
+										<Warning color="warning" />
+									</InputAdornment>
+								) : null,
+							}}
+							error={has_errors}
+						/>
+
+						<Tooltip title="Add" placement="right">
+							<Info color="primary" sx={{ ml: 2, cursor: 'help' }} />
+						</Tooltip>
+					</Box>
+
+					{error && <FormHelperText error>{error}</FormHelperText>}
+				</Grid>
+			</Grid>
+
+			{!controlled && (
+				<Box sx={{ mt: '10px', display: 'flex', justifyContent: 'space-between' }}>
+					{editing ? (
+						<Button size="small" variant="contained" color="error" onClick={onCancel}>
+							{t('actions.cancel')}
+						</Button>
+					) : (
+						<Button
+							size="small"
+							variant="contained"
+							color="info"
+							onClick={onCancel}
+							sx={{ opacity: value && value.length > 0 ? 1 : 0 }}
+						>
+							{t('actions.clear')}
+						</Button>
+					)}
+					<Button size="small" variant="contained" onClick={onSave}>
+						{main_button_text || t('actions.save')}
+					</Button>
+				</Box>
+			)}
+		</FieldContainer>
+	)
+}
+
+const ControlledField = ({ name: field_name, onChange: customOnChange }) => {
+	const [field, meta] = useField({ name: 'fx' })
+
+	const { setFieldValue } = useFormikContext()
+	const { value } = field
+	const { error } = meta
+
+	return <Input onChange={(value) => setFieldValue(field_name, value)} value={value} error={error} controlled />
+}
+
+const FunctionInput = ({
+	name,
+	default_value,
+	editing,
+	handleSave,
+	handleCancel,
+	main_button_text,
+	controlled = false,
+}) => {
+	const [value, setValue] = useState('')
+
+	useEffect(() => {
+		default_value && setValue(default_value)
+	}, [default_value])
+
 	const onSave = () => {
-		if (!error && value !== '') {
+		if (value !== '') {
 			handleSave(value)
 			setValue('')
 		}
@@ -134,47 +168,10 @@ const FunctionInput = ({ default_value, editing, handleSave, handleCancel, main_
 		handleCancel()
 	}
 
+	if (controlled) return <ControlledField name={name} />
+
 	return (
-		<FieldContainer>
-			<InputLabel>{t('label')}</InputLabel>
-			<TextField
-				value={value}
-				onChange={(e) => onChange(e.target.value)}
-				onKeyDown={(e) => {
-					if (e.keyCode == 13) onSave(value)
-				}}
-				sx={{ width: '100%' }}
-				placeholder={t('placeholder')}
-				InputProps={{
-					startAdornment: <InputAdornment position="start">f(x) =</InputAdornment>,
-					endAdornment: error ? (
-						<InputAdornment position="end">
-							<Warning color="warning" />
-						</InputAdornment>
-					) : null,
-				}}
-			/>
-			<Box sx={{ mt: '10px', display: 'flex', justifyContent: 'space-between' }}>
-				{editing ? (
-					<Button size="small" variant="contained" color="error" onClick={onCancel}>
-						{t('actions.cancel')}
-					</Button>
-				) : (
-					<Button
-						size="small"
-						variant="contained"
-						color="info"
-						onClick={onCancel}
-						sx={{ opacity: value.length > 0 ? 1 : 0 }}
-					>
-						{t('actions.clear')}
-					</Button>
-				)}
-				<Button size="small" variant="contained" onClick={onSave}>
-					{main_button_text || t('actions.save')}
-				</Button>
-			</Box>
-		</FieldContainer>
+		<Input {...{ value, onChange: (val) => setValue(val), onSave, onCancel, controlled, main_button_text, editing }} />
 	)
 }
 

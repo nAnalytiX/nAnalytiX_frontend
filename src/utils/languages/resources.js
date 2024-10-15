@@ -18,6 +18,13 @@ import GaussTotal_T from 'components/Methods/GaussTotal/translation'
 
 const es = {
 	translation: {
+		ui: {
+			form: {
+				validation: {
+					required: 'Este campo es Requerido',
+				},
+			},
+		},
 		common: {
 			methods: {
 				non_linear_equations: {
