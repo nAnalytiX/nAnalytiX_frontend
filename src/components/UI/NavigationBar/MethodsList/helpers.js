@@ -31,4 +31,6 @@ const interpolation = ['diff_divide', 'lagrange', 'linear_spline', 'square_splin
 
 export const methods_list = { non_linear_equations, linear_equations, interpolation }
 
+export const organized_list = [...non_linear_equations, ...linear_equations, ...interpolation]
+
 export default {}

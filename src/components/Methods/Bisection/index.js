@@ -22,16 +22,10 @@ import { bisectionRuby } from './codes'
 
 // Utils
 
-const Bisection = () => {
+const Bisection = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Bisection' })
 
-	return (
-		<Methods
-			method={t('name')}
-			methodElement={<React.Fragment />}
-			codeElement={<Codes ruby_code={bisectionRuby(t)} />}
-		/>
-	)
+	return <Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={bisectionRuby(t)} />} />
 }
 
 Bisection.propTypes = {}

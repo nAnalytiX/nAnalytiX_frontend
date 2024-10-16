@@ -22,12 +22,10 @@ import { secantRuby } from './codes'
 
 // Utils
 
-const Secant = () => {
+const Secant = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Secant' })
 
-	return (
-		<Methods method={t('name')} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={secantRuby(t)} />} />
-	)
+	return <Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={secantRuby(t)} />} />
 }
 
 Secant.propTypes = {}

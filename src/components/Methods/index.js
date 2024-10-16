@@ -7,8 +7,9 @@
 import React, { useState } from 'react'
 
 // NPM Libraries
-import { Box, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Tab, Tabs } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import Title from './Title'
 // import PropTypes from 'prop-types'
 // import styled from '@emotion/styled'
 
@@ -36,7 +37,7 @@ const TabPanel = (props) => {
 	)
 }
 
-const Methods = ({ method, methodElement, codeElement, pseudoElement }) => {
+const Methods = ({ method_key, name, methodElement, codeElement, pseudoElement }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods' })
 	const [value, setValue] = useState(0)
 
@@ -45,29 +46,29 @@ const Methods = ({ method, methodElement, codeElement, pseudoElement }) => {
 	}
 
 	return (
-		<Box sx={{ px: 2, py: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-			<Typography variant="h3" sx={{ mb: 1 }}>
-				{method}
-			</Typography>
+		<div className="container">
+			<Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				<Title method_name={name} method_key={method_key} />
 
-			<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-				<Tab label={t('tabs.method')} disableRipple />
-				<Tab label={t('tabs.code')} disableRipple />
-				<Tab label={t('tabs.pseudo')} disableRipple />
-			</Tabs>
+				<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+					<Tab label={t('tabs.method')} disableRipple />
+					<Tab label={t('tabs.code')} disableRipple />
+					<Tab label={t('tabs.pseudo')} disableRipple />
+				</Tabs>
 
-			<TabPanel value={value} index={0}>
-				{methodElement}
-			</TabPanel>
+				<TabPanel value={value} index={0}>
+					{methodElement}
+				</TabPanel>
 
-			<TabPanel value={value} index={1}>
-				{codeElement}
-			</TabPanel>
+				<TabPanel value={value} index={1}>
+					{codeElement}
+				</TabPanel>
 
-			<TabPanel value={value} index={2}>
-				{pseudoElement}
-			</TabPanel>
-		</Box>
+				<TabPanel value={value} index={2}>
+					{pseudoElement}
+				</TabPanel>
+			</Box>
+		</div>
 	)
 }
 

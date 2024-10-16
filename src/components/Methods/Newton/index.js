@@ -22,12 +22,10 @@ import { newtonRuby } from './codes'
 
 // Utils
 
-const Newton = () => {
+const Newton = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Newton' })
 
-	return (
-		<Methods method={t('name')} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={newtonRuby(t)} />} />
-	)
+	return <Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={newtonRuby(t)} />} />
 }
 
 Newton.propTypes = {}

@@ -22,15 +22,11 @@ import { falsePositionRuby } from './codes'
 
 // Utils
 
-const FalsePosition = () => {
+const FalsePosition = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.FalsePosition' })
 
 	return (
-		<Methods
-			method={t('name')}
-			methodElement={<React.Fragment />}
-			codeElement={<Codes ruby_code={falsePositionRuby(t)} />}
-		/>
+		<Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={falsePositionRuby(t)} />} />
 	)
 }
 

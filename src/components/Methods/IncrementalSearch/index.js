@@ -41,15 +41,11 @@ const MethodLogic = () => {
 	)
 }
 
-const IncrementalSearch = () => {
+const IncrementalSearch = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.IncrementalSearch' })
 
 	return (
-		<Methods
-			method={t('name')}
-			methodElement={<MethodLogic />}
-			codeElement={<Codes ruby_code={incrementalSearchRuby(t)} />}
-		/>
+		<Methods {...props} methodElement={<MethodLogic />} codeElement={<Codes ruby_code={incrementalSearchRuby(t)} />} />
 	)
 }
 

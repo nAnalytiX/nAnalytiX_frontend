@@ -22,15 +22,11 @@ import { multipleRootsRuby } from './codes'
 
 // Utils
 
-const MultipleRoots = () => {
+const MultipleRoots = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.MultipleRoots' })
 
 	return (
-		<Methods
-			method={t('name')}
-			methodElement={<React.Fragment />}
-			codeElement={<Codes ruby_code={multipleRootsRuby(t)} />}
-		/>
+		<Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={multipleRootsRuby(t)} />} />
 	)
 }
 

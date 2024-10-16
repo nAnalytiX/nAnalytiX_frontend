@@ -22,16 +22,10 @@ import { fixedPointRuby } from './codes'
 
 // Utils
 
-const FixedPoint = () => {
+const FixedPoint = (props) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.FixedPoint' })
 
-	return (
-		<Methods
-			method={t('name')}
-			methodElement={<React.Fragment />}
-			codeElement={<Codes ruby_code={fixedPointRuby(t)} />}
-		/>
-	)
+	return <Methods {...props} methodElement={<React.Fragment />} codeElement={<Codes ruby_code={fixedPointRuby(t)} />} />
 }
 
 FixedPoint.propTypes = {}
