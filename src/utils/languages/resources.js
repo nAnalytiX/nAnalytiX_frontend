@@ -15,6 +15,8 @@ import Secant_T from 'components/Methods/Secant/translation'
 import GaussSimple_T from 'components/Methods/GaussSimple/translation'
 import GaussPartial_T from 'components/Methods/GaussPartial/translation'
 import GaussTotal_T from 'components/Methods/GaussTotal/translation'
+import Tolerance_T from 'components/UI/Inputs/Tolerance/translation'
+import ErrorTypeInput_T from 'components/UI/Inputs/ErrorType/translation'
 
 const es = {
 	translation: {
@@ -69,6 +71,8 @@ const es = {
 			Grapher: Grapher_T.es,
 			Graph: Graph_T.es,
 			FunctionInput: FunctionInput_T.es,
+			Tolerance: Tolerance_T.es,
+			ErrorTypeInput: ErrorTypeInput_T.es,
 			Methods: Methods_T.es,
 			IncrementalSearch: IncrementalSearch_T.es,
 			Bisection: Bisection_T.es,
@@ -131,6 +135,7 @@ const en = {
 			Grapher: Grapher_T.en,
 			Graph: Graph_T.en,
 			FunctionInput: FunctionInput_T.en,
+			Tolerance: Tolerance_T.en,
 			Methods: Methods_T.en,
 			IncrementalSearch: IncrementalSearch_T.en,
 			Bisection: Bisection_T.en,
@@ -142,6 +147,7 @@ const en = {
 			GaussSimple: GaussSimple_T.en,
 			GaussPartial: GaussPartial_T.en,
 			GaussTotal: GaussTotal_T.en,
+			ErrorTypeInput: ErrorTypeInput_T.en,
 		},
 	},
 }

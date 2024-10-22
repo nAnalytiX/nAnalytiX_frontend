@@ -9,9 +9,9 @@ import React, { useState } from 'react'
 // NPM Libraries
 import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import { matchPath } from 'react-router'
 // import PropTypes from 'prop-types'
-// import styled from '@emotion/styled'
 
 // GraphQL
 // import { useQuery } from 'hooks'
@@ -21,12 +21,16 @@ import { useNavigate } from 'react-router-dom'
 
 // Utils
 import { methods_list } from './helpers'
+import colors from 'styles/colors'
 
 const MethodsList = () => {
+	const navigate = useNavigate()
+	const location = useLocation()
+
+	const match = matchPath({ path: '/methods/:id' }, location.pathname)
+
 	const { t } = useTranslation('', { keyPrefix: 'components.MethodsList' })
 	const { t: t_methods } = useTranslation('', { keyPrefix: 'common.methods' })
-
-	const navigate = useNavigate()
 
 	const [anchorEl, setAnchorEl] = useState(null)
 
@@ -38,6 +42,8 @@ const MethodsList = () => {
 	}
 
 	const open = Boolean(anchorEl)
+
+	const active_method_key = match?.params?.id?.replace('-', '_')
 
 	return (
 		<React.Fragment>
@@ -53,7 +59,13 @@ const MethodsList = () => {
 								{t_methods(`${list}._`)}
 							</Typography>
 							{methods_list[list].map((method, method_index) => (
-								<MenuItem key={method_index} onClick={() => handleCLick(method)}>
+								<MenuItem
+									key={method_index}
+									onClick={() => handleCLick(method)}
+									sx={{
+										backgroundColor: method === active_method_key ? colors.PRIMARY['50'] : 'inherit',
+									}}
+								>
 									{t_methods(`${list}.${method}`)}
 								</MenuItem>
 							))}

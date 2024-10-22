@@ -1,6 +1,6 @@
 /**
  *
- *  Methods/IncrementalSearch/Form
+ *  Methods/Bisection/Form
  *
  */
 
@@ -19,7 +19,9 @@ import * as yup from 'yup'
 
 // Components
 import FunctionInput from 'components/UI/FunctionInput'
-import NumberInput from 'components/UI/Inputs/Number'
+import ToleranceInput from 'components/UI/Inputs/Tolerance'
+import ErrorTypeInput from 'components/UI/Inputs/ErrorType'
+// import NumberInput from 'components/UI/Inputs/Number'
 
 // Utils
 import i18next from 'utils/languages/i18n.js'
@@ -29,18 +31,16 @@ const validateSchema = () => {
 
 	return yup.object().shape({
 		fx: yup.string().required(required_message),
-		x0: yup.number().required(required_message),
-		delta: yup.number().required(required_message),
-		nmax: yup.number().required(required_message),
+		tolerance: yup.number().required(required_message),
 	})
 }
 
-const IncrementalSearchForm = () => {
+const BisectionForm = () => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
 
 	return (
 		<Formik
-			initialValues={{ fx: 'cos(x)', x0: 0, nmax: 100 }}
+			initialValues={{ fx: 'cos(x)', nmax: 100, tolerance: 1e-7, error_type: 'absolute' }}
 			onSubmit={(values) => console.log(values)}
 			validationSchema={() => validateSchema()}
 		>
@@ -49,13 +49,14 @@ const IncrementalSearchForm = () => {
 					<FunctionInput name="fx" controlled hide_actions />
 				</Paper>
 
+				<Paper sx={{ p: 2, mb: 2 }} elevation={0}></Paper>
+
 				<Paper sx={{ p: 2 }} elevation={0}>
-					<NumberInput name="x0" label={t('fields.x0')} adornment={{ start: 'x0' }} />
-					<NumberInput name="delta" label={t('fields.delta')} adornment={{ start: 'Δ' }} />
-					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} />
+					<ToleranceInput name="tolerance" />
+					<ErrorTypeInput name="error_type" />
 				</Paper>
 
-				<Box sx={{ mt: 2, display: 'flex', justifyContent: 'end' }}>
+				<Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
 					<IconButton type="reset" color="default" sx={{ mr: 1 }} title={t('buttons.reset')}>
 						<RestartAlt />
 					</IconButton>
@@ -69,6 +70,6 @@ const IncrementalSearchForm = () => {
 	)
 }
 
-IncrementalSearchForm.propTypes = {}
+BisectionForm.propTypes = {}
 
-export default IncrementalSearchForm
+export default BisectionForm

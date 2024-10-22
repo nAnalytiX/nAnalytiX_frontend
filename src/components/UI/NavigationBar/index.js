@@ -35,7 +35,7 @@ const NavigationBar = () => {
 			<AppBar position="static">
 				<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2, px: 3 }}>
 					<Box sx={{ display: 'flex' }}>
-						<Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer' }}>
+						<Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer', mr: 2 }}>
 							<FontAwesomeIcon icon={faWaveSquare} style={{ fontSize: '1.8rem', marginTop: '1px' }} />
 							<Typography variant="h6" component="div" sx={{ ml: 1, flexGrow: 1, fontSize: '1.7rem' }}>
 								AnalytiX
@@ -44,7 +44,7 @@ const NavigationBar = () => {
 
 						<MethodsList />
 
-						<Button onClick={() => navigate('/grapher')} color="inherit" sx={{ ml: 4 }}>
+						<Button onClick={() => navigate('/grapher')} color="inherit" sx={{ ml: 2 }}>
 							{t('actions.grapher')}
 						</Button>
 					</Box>

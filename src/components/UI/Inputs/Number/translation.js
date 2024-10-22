@@ -3,8 +3,8 @@
  */
 
 const Number_T = {
-  es: {},
-  en: {},
+	es: {},
+	en: {},
 }
 
 export default Number_T
