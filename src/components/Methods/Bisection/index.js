@@ -28,7 +28,6 @@ const MethodLogic = () => {
 	return (
 		<div className="row" style={{ flexGrow: 1 }}>
 			<div className="col-12 col-lg-5">
-				<Card></Card>
 				<BisectionForm />
 			</div>
 

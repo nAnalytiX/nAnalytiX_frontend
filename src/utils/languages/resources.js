@@ -17,6 +17,7 @@ import GaussPartial_T from 'components/Methods/GaussPartial/translation'
 import GaussTotal_T from 'components/Methods/GaussTotal/translation'
 import Tolerance_T from 'components/UI/Inputs/Tolerance/translation'
 import ErrorTypeInput_T from 'components/UI/Inputs/ErrorType/translation'
+import IntervalInput_T from 'components/UI/Inputs/Interval/translation'
 
 const es = {
 	translation: {
@@ -84,6 +85,7 @@ const es = {
 			GaussSimple: GaussSimple_T.es,
 			GaussPartial: GaussPartial_T.es,
 			GaussTotal: GaussTotal_T.es,
+			IntervalInput: IntervalInput_T.es,
 		},
 	},
 }
@@ -148,6 +150,7 @@ const en = {
 			GaussPartial: GaussPartial_T.en,
 			GaussTotal: GaussTotal_T.en,
 			ErrorTypeInput: ErrorTypeInput_T.en,
+			IntervalInput: IntervalInput_T.en,
 		},
 	},
 }

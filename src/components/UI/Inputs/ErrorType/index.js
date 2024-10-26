@@ -1,6 +1,6 @@
 /**
  *
- *  Ui/Inputs/ErrorType
+ *  UI/Inputs/ErrorType
  *
  */
 
@@ -55,7 +55,7 @@ const ErrorTypeInput = ({ form_control_props = {}, disabled, ...props }) => {
 		<FormControl
 			error={show_error}
 			disabled={disabled}
-			sx={{ width: '100%', marginTop: '0.2rem', ...form_control_props.sx }}
+			sx={{ width: '100%', marginTop: '0.3rem', ...form_control_props.sx }}
 			{...form_control_props}
 		>
 			<Grid container sx={{ alignItems: 'center' }}>

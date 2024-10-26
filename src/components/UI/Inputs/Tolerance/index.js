@@ -79,7 +79,7 @@ const ToleranceInput = ({ label, form_control_props = {}, disabled, ...props }) 
 
 								onChangeLogic.then(() => form.validateField(field.name))
 							}}
-							sx={{ width: '45%' }}
+							sx={{ width: '40%' }}
 							MenuProps={{
 								sx: {
 									maxHeight: '400px',
@@ -91,7 +91,7 @@ const ToleranceInput = ({ label, form_control_props = {}, disabled, ...props }) 
 
 								return (
 									<MenuItem key={value} value={value} sx={{ py: 1 }}>
-										<Box sx={{ display: 'flex', justifyContent: 'center' }}>
+										<Box sx={{ display: 'flex' }}>
 											<Typography align="right">1 * 10</Typography>
 
 											<span style={{ fontSize: '0.7rem', marginTop: '-7px', marginLeft: '5px' }}>{label}</span>

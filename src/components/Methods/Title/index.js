@@ -43,7 +43,9 @@ const Title = ({ method_name, method_key }) => {
 				<KeyboardDoubleArrowLeft color="primary" />
 			</IconButton>
 
-			<Typography variant="h3">{method_name}</Typography>
+			<Typography variant="h3" align="center">
+				{method_name}
+			</Typography>
 
 			<IconButton
 				onClick={() => handleChangeMethod(current_method_index + 1)}

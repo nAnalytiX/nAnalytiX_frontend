@@ -138,21 +138,33 @@ export const generateTheme = () => {
 			MuiInputBase: {
 				styleOverrides: {
 					input: {
-						padding: '11px !important',
-						paddingLeft: '0 !important',
+						padding: '10px !important',
+					},
+				},
+			},
+
+			MuiSelect: {
+				styleOverrides: {
+					select: {
+						paddingLeft: '15px !important',
 					},
 				},
 			},
 
 			MuiInputAdornment: {
 				styleOverrides: {
+					root: {},
 					positionStart: {
-						minWidth: '50px',
+						minWidth: '30px',
 						backgroundColor: 'rgba(0, 0, 0, 0.12)',
-						padding: '22px 15px',
+						padding: '21px 15px',
 						borderTopLeftRadius: '4px',
 						borderBottomLeftRadius: '4px',
 						justifyContent: 'center',
+						'& p': {
+							fontSize: '0.8rem !important',
+							lineHeight: '45px',
+						},
 					},
 				},
 			},

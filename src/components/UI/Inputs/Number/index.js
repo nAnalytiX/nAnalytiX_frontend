@@ -30,7 +30,15 @@ import { useField } from 'formik'
 
 // Utils
 
-const NumberInput = ({ label, form_control_props = {}, disabled, adornment = {}, ...props }) => {
+const NumberInput = ({
+	label,
+	form_control_props = {},
+	disabled,
+	adornment = {},
+	gutter_bottom = false,
+	width,
+	...props
+}) => {
 	// const { t } = useTranslation('', { keyPrefix: 'components.Ui.Inputs.Number' })
 
 	const [field, meta] = useField({ ...props })
@@ -45,7 +53,7 @@ const NumberInput = ({ label, form_control_props = {}, disabled, adornment = {},
 		<FormControl
 			error={show_error}
 			disabled={disabled}
-			sx={{ width: '100%', marginBottom: '1rem', ...form_control_props.sx }}
+			sx={{ width: '100%', marginBottom: gutter_bottom ? '1rem' : 0, ...form_control_props.sx }}
 			{...form_control_props}
 		>
 			<Grid container sx={{ alignItems: 'center' }}>
@@ -56,7 +64,7 @@ const NumberInput = ({ label, form_control_props = {}, disabled, adornment = {},
 				</Grid>
 
 				<Grid xs={8}>
-					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+					<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
 						<OutlinedInput
 							id={id}
 							type="number"
@@ -65,7 +73,7 @@ const NumberInput = ({ label, form_control_props = {}, disabled, adornment = {},
 							inputProps={{
 								style: { textAlign: 'right' },
 							}}
-							sx={{ width: '100%', paddingLeft: adornment?.start ? 0 : '1rem' }}
+							sx={{ width: width || '100%', paddingLeft: adornment?.start ? 0 : '1rem' }}
 							startAdornment={adornment?.start && <InputAdornment position="start">{adornment.start}</InputAdornment>}
 							endAdornment={adornment?.end && <InputAdornment position="end">{adornment.end}</InputAdornment>}
 							{...props}

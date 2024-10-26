@@ -36,9 +36,23 @@ const FieldContainer = styled.div`
 	}
 `
 
-const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, main_button_text }) => {
+const Input = ({
+	value,
+	label,
+	onChange,
+	onSave,
+	onCancel,
+	controlled,
+	editing,
+	error,
+	main_button_text,
+	adornment,
+	gutter_bottom,
+}) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.FunctionInput' })
 	const [internal_error, setInternalError] = useState(false)
+
+	console.log(label)
 
 	const internalOnChange = (equation) => {
 		const formated_equation = formatter(equation)
@@ -46,6 +60,7 @@ const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, 
 		if (formated_equation === 'error') {
 			onChange(equation)
 			setInternalError(true)
+
 			return
 		} else {
 			onChange(formated_equation)
@@ -66,11 +81,11 @@ const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, 
 	const has_errors = internal_error || error
 
 	return (
-		<FieldContainer>
+		<FieldContainer style={{ marginBottom: gutter_bottom ? '1rem' : '0' }}>
 			<Grid container sx={{ alignItems: 'center' }}>
 				<Grid item xs={4}>
 					<Typography variant="caption" color={has_errors ? 'error' : ''} sx={{ fontSize: '0.95rem' }}>
-						{t('label')}
+						{label || t('label')}
 					</Typography>
 				</Grid>
 
@@ -86,7 +101,7 @@ const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, 
 							placeholder={t('placeholder')}
 							InputProps={{
 								sx: { paddingLeft: 0 },
-								startAdornment: <InputAdornment position="start">f(x)</InputAdornment>,
+								startAdornment: <InputAdornment position="start">{adornment || 'f(x)'}</InputAdornment>,
 								endAdornment: has_errors ? (
 									<InputAdornment position="end">
 										<Warning color="warning" />
@@ -131,14 +146,16 @@ const Input = ({ value, onChange, onSave, onCancel, controlled, editing, error, 
 	)
 }
 
-const ControlledField = ({ name: field_name, onChange: customOnChange }) => {
-	const [field, meta] = useField({ name: 'fx' })
+const ControlledField = ({ name: field_name, ...props }) => {
+	const [field, meta] = useField({ name: field_name })
 
 	const { setFieldValue } = useFormikContext()
 	const { value } = field
 	const { error } = meta
 
-	return <Input onChange={(value) => setFieldValue(field_name, value)} value={value} error={error} controlled />
+	return (
+		<Input onChange={(value) => setFieldValue(field_name, value)} value={value} error={error} controlled {...props} />
+	)
 }
 
 const FunctionInput = ({
@@ -149,6 +166,7 @@ const FunctionInput = ({
 	handleCancel,
 	main_button_text,
 	controlled = false,
+	...props
 }) => {
 	const [value, setValue] = useState('')
 
@@ -168,10 +186,21 @@ const FunctionInput = ({
 		handleCancel()
 	}
 
-	if (controlled) return <ControlledField name={name} />
+	if (controlled) return <ControlledField name={name} {...props} />
 
 	return (
-		<Input {...{ value, onChange: (val) => setValue(val), onSave, onCancel, controlled, main_button_text, editing }} />
+		<Input
+			{...{
+				value,
+				onChange: (val) => setValue(val),
+				onSave,
+				onCancel,
+				controlled,
+				main_button_text,
+				editing,
+				...props,
+			}}
+		/>
 	)
 }
 

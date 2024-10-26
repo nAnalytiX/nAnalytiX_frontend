@@ -5,7 +5,7 @@
 const FunctionInput_T = {
 	es: {
 		label: 'Función:',
-		placeholder: 'Nueva Entrada...',
+		placeholder: 'Nueva Función...',
 		actions: {
 			save: 'Guardar Función',
 			clear: 'Limpiar',
@@ -14,7 +14,7 @@ const FunctionInput_T = {
 	},
 	en: {
 		label: 'Function:',
-		placeholder: 'New Entry...',
+		placeholder: 'New Function...',
 		actions: {
 			save: 'Save Function',
 			clear: 'Clear',

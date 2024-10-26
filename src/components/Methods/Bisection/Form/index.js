@@ -18,13 +18,14 @@ import * as yup from 'yup'
 // import { gql, useMutation } from '@apollo/client'
 
 // Components
-import FunctionInput from 'components/UI/FunctionInput'
-import ToleranceInput from 'components/UI/Inputs/Tolerance'
 import ErrorTypeInput from 'components/UI/Inputs/ErrorType'
-// import NumberInput from 'components/UI/Inputs/Number'
+import FunctionInput from 'components/UI/FunctionInput'
+import NumberInput from 'components/UI/Inputs/Number'
+import ToleranceInput from 'components/UI/Inputs/Tolerance'
 
 // Utils
 import i18next from 'utils/languages/i18n.js'
+import IntervalInput from 'components/UI/Inputs/Interval'
 
 const validateSchema = () => {
 	const required_message = i18next.t('ui.form.validation.required')
@@ -49,9 +50,12 @@ const BisectionForm = () => {
 					<FunctionInput name="fx" controlled hide_actions />
 				</Paper>
 
-				<Paper sx={{ p: 2, mb: 2 }} elevation={0}></Paper>
+				<Paper sx={{ p: 2, mb: 2 }} elevation={0}>
+					<IntervalInput name="interval" />
+				</Paper>
 
 				<Paper sx={{ p: 2 }} elevation={0}>
+					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} gutter_bottom />
 					<ToleranceInput name="tolerance" />
 					<ErrorTypeInput name="error_type" />
 				</Paper>

@@ -50,8 +50,8 @@ const IncrementalSearchForm = () => {
 				</Paper>
 
 				<Paper sx={{ p: 2 }} elevation={0}>
-					<NumberInput name="x0" label={t('fields.x0')} adornment={{ start: 'x0' }} />
-					<NumberInput name="delta" label={t('fields.delta')} adornment={{ start: 'Δ' }} />
+					<NumberInput name="x0" label={t('fields.x0')} adornment={{ start: 'x0' }} gutter_bottom />
+					<NumberInput name="delta" label={t('fields.delta')} adornment={{ start: 'Δ' }} gutter_bottom />
 					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} />
 				</Paper>
 

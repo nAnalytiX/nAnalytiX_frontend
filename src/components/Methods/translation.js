@@ -11,9 +11,11 @@ const Methods_T = {
 		},
 		form: {
 			fields: {
-				x0: 'Punto Inicial',
+				x0: 'Valor Inicial',
 				delta: 'Delta',
 				nmax: 'Iteraciónes Maximas',
+				derivate: 'Derivada',
+				second_derivate: 'Segunda Derivada',
 			},
 			buttons: {
 				find_roots: 'Buscar Raíces',
@@ -32,6 +34,8 @@ const Methods_T = {
 				x0: 'Initial Value',
 				delta: 'Delta',
 				nmax: 'Max Iterations',
+				derivate: 'First Derivate',
+				second_derivate: 'Second Derivate',
 			},
 			buttons: {
 				find_roots: 'Find Roots',
