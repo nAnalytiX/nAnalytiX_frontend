@@ -71,7 +71,7 @@ const validateSchema = () => {
 const MultipleRootsForm = () => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
 
-	const [resolve_method, { loading }] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
+	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
 
 	const initial_values = {
 		fx: 'exp(x) - x -1',
