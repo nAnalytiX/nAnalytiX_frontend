@@ -20,6 +20,13 @@ const IncrementalSearch_T = {
 			12: 'Validar que el el Número Máximo de Iteraciones sea mayor a cero',
 			13: 'Validar que la Función sea valida',
 		},
+		columns: {
+			interval: 'Intervalo',
+			result: 'Resultado',
+		},
+		results: {
+			interval_found: 'Raíz encontrada en este Intervalo',
+		},
 	},
 	en: {
 		name: 'Incremental Search',
@@ -38,6 +45,13 @@ const IncrementalSearch_T = {
 			12: 'Validate that the Maximum Number of Iterations is greater than zero',
 			13: 'Validate that the Initial value (x0) is a valid number',
 			14: 'Validate that the Function is valid',
+		},
+		columns: {
+			interval: 'Interval',
+			result: 'Result',
+		},
+		results: {
+			interval_found: 'Root found for this Interval',
 		},
 	},
 }

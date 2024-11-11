@@ -25,7 +25,6 @@ import { Info } from '@mui/icons-material'
 
 const InputsContainer = styled.div`
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	flex: 1;
 
@@ -93,7 +92,7 @@ const IntervalInput = ({ form_control_props = {}, disabled }) => {
 						</Tooltip>
 					</Box>
 
-					{show_error && <FormHelperText>'TODO'</FormHelperText>}
+					{show_error && <FormHelperText>TODO</FormHelperText>}
 				</Grid>
 			</Grid>
 		</FormControl>

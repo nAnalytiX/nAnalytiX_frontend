@@ -161,9 +161,20 @@ export const generateTheme = () => {
 						borderTopLeftRadius: '4px',
 						borderBottomLeftRadius: '4px',
 						justifyContent: 'center',
+						marginRight: '0 !important',
 						'& p': {
 							fontSize: '0.8rem !important',
 							lineHeight: '45px',
+						},
+					},
+				},
+			},
+
+			MuiTableRow: {
+				styleOverrides: {
+					root: {
+						'&:hover': {
+							backgroundColor: `${PRIMARY[50]} !important`,
 						},
 					},
 				},

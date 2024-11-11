@@ -52,8 +52,6 @@ const Input = ({
 	const { t } = useTranslation('', { keyPrefix: 'components.FunctionInput' })
 	const [internal_error, setInternalError] = useState(false)
 
-	console.log(label)
-
 	const internalOnChange = (equation) => {
 		const formated_equation = formatter(equation)
 
@@ -97,10 +95,10 @@ const Input = ({
 							onKeyDown={(e) => {
 								if (e.keyCode == 13) onSave(value)
 							}}
-							sx={{ width: '100%', paddingLeft: 0 }}
+							sx={{ width: '100%' }}
 							placeholder={t('placeholder')}
 							InputProps={{
-								sx: { paddingLeft: 0 },
+								sx: { paddingLeft: '0 !important' },
 								startAdornment: <InputAdornment position="start">{adornment || 'f(x)'}</InputAdornment>,
 								endAdornment: has_errors ? (
 									<InputAdornment position="end">

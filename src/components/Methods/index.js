@@ -37,7 +37,7 @@ const TabPanel = (props) => {
 	)
 }
 
-const Methods = ({ method_key, name, methodElement, codeElement, pseudoElement }) => {
+const Methods = ({ method_key, name, methodElement, codeElement }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods' })
 	const [value, setValue] = useState(0)
 
@@ -53,7 +53,6 @@ const Methods = ({ method_key, name, methodElement, codeElement, pseudoElement }
 				<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
 					<Tab label={t('tabs.method')} disableRipple />
 					<Tab label={t('tabs.code')} disableRipple />
-					<Tab label={t('tabs.pseudo')} disableRipple />
 				</Tabs>
 
 				<TabPanel value={value} index={0}>
@@ -62,10 +61,6 @@ const Methods = ({ method_key, name, methodElement, codeElement, pseudoElement }
 
 				<TabPanel value={value} index={1}>
 					{codeElement}
-				</TabPanel>
-
-				<TabPanel value={value} index={2}>
-					{pseudoElement}
 				</TabPanel>
 			</Box>
 		</div>

@@ -14,8 +14,7 @@ import { useTranslation } from 'react-i18next'
 import * as yup from 'yup'
 
 // GraphQL
-// import { useQuery } from 'hooks'
-// import { gql, useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 // Components
 import ErrorTypeInput from 'components/UI/Inputs/ErrorType'
@@ -25,25 +24,65 @@ import ToleranceInput from 'components/UI/Inputs/Tolerance'
 
 // Utils
 import i18next from 'utils/languages/i18n.js'
+import { common_initial_values } from 'components/Methods/helpers'
+
+const RESOLVE_NON_LINEAR_EQUATION = gql`
+	mutation nonLinearEquationResolver(
+		$method: String!
+		$fx: String
+		$derivate: String
+		$x0: Float
+		$tolerance: Float
+		$nmax: Int
+		$error_type: String
+	) {
+		nonLinearEquationResolver(
+			input: {
+				method: $method
+				fx: $fx
+				derivate: $derivate
+				x0: $x0
+				tolerance: $tolerance
+				nmax: $nmax
+				error_type: $error_type
+			}
+		) {
+			result
+		}
+	}
+`
 
 const validateSchema = () => {
 	const required_message = i18next.t('ui.form.validation.required')
 
 	return yup.object().shape({
 		fx: yup.string().required(required_message),
+		derivate: yup.string().required(required_message),
+		x0: yup.number().required(required_message),
+		nmax: yup.number().required(required_message),
 		tolerance: yup.number().required(required_message),
+		error_type: yup.string().required(required_message),
 	})
 }
 
 const NewtonForm = () => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
 
+	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
+
+	const initial_values = {
+		fx: common_initial_values.fx,
+		derivate: common_initial_values.derivate,
+		x0: 0.5,
+		nmax: common_initial_values.nmax,
+		tolerance: common_initial_values.tolerance,
+		error_type: common_initial_values.error_type,
+	}
+
+	const handleSubmit = (values) => resolve_method({ variables: { ...values, method: 'newton' } })
+
 	return (
-		<Formik
-			initialValues={{ fx: 'cos(x)', nmax: 100, tolerance: 1e-7, error_type: 'absolute' }}
-			onSubmit={(values) => console.log(values)}
-			validationSchema={() => validateSchema()}
-		>
+		<Formik initialValues={initial_values} onSubmit={handleSubmit} validationSchema={() => validateSchema()}>
 			<Form>
 				<Paper sx={{ p: 2, mb: 2 }} elevation={0}>
 					<FunctionInput name="fx" controlled hide_actions gutter_bottom />

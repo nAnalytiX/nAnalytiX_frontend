@@ -34,7 +34,7 @@ const Title = ({ method_name, method_key }) => {
 	}
 
 	return (
-		<Box sx={{ width: '50%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+		<Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 			<IconButton
 				onClick={() => handleChangeMethod(current_method_index - 1)}
 				size="small"

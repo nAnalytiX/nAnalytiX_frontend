@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 // NPM Libraries
 import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { matchPath } from 'react-router'
 // import PropTypes from 'prop-types'
 
