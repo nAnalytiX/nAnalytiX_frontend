@@ -41,9 +41,9 @@ export const RESOLVE_NON_LINEAR_EQUATION = gql`
 export const common_initial_values = {
 	fx: 'ln((sin(x)^2) + 1) - 1/2',
 	derivate: '(2 * (sin(x)^2 + 1)^-1) * sin(x) * cos(x)',
-	a_interval: 0,
-	b_interval: 1,
+	intervalA: 0,
+	intervalB: 1,
 	tolerance: 1e-7,
 	nmax: 100,
-	error_type: 'absolute',
+	errorType: 'absolute',
 }

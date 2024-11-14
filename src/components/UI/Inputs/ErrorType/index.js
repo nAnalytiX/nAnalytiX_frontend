@@ -68,7 +68,7 @@ const ErrorTypeInput = ({ form_control_props = {}, disabled, ...props }) => {
 				<Grid xs={8}>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<SelectButton
-							onClick={() => form.setFieldValue('error_type', 'absolute')}
+							onClick={() => form.setFieldValue('errorType', 'absolute')}
 							active={value === 'absolute'}
 							style={{ borderTopLeftRadius: '8px', borderBottomLeftRadius: '8px', borderRight: 0 }}
 						>
@@ -76,7 +76,7 @@ const ErrorTypeInput = ({ form_control_props = {}, disabled, ...props }) => {
 						</SelectButton>
 
 						<SelectButton
-							onClick={() => form.setFieldValue('error_type', 'relative')}
+							onClick={() => form.setFieldValue('errorType', 'relative')}
 							active={value === 'relative'}
 							style={{ borderTopRightRadius: '8px', borderBottomRightRadius: '8px' }}
 						>

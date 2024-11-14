@@ -179,6 +179,14 @@ export const generateTheme = () => {
 					},
 				},
 			},
+
+			MuiAlert: {
+				styleOverrides: {
+					message: {
+						lineHeight: '22px',
+					},
+				},
+			},
 		},
 	})
 

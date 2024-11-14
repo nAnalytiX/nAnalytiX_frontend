@@ -43,7 +43,6 @@ def bisection(func, a, b, tol = 0.0000001, nmax = 100, error_type = 'abs')
     _Fx_m = f.call(m_new)
 
     if i > 1
-      #error = ((m_new - m_old).abs / m_new.abs).abs
       error = Methods::Utils::Commons.calc_error(m_new, m_old, @error_type)
     end
 

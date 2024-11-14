@@ -27,6 +27,8 @@ const IncrementalSearch_T = {
 		results: {
 			interval_found: 'Raíz encontrada en este Intervalo',
 		},
+		empty_table:
+			'No tenemos ningun dato para mostrar, por favor llena los datos y corre el metodo para encontrar raices.',
 	},
 	en: {
 		name: 'Incremental Search',
@@ -53,6 +55,7 @@ const IncrementalSearch_T = {
 		results: {
 			interval_found: 'Root found for this Interval',
 		},
+		empty_table: "We don't have any data to display, please fill in the form and run the method to find roots.",
 	},
 }
 

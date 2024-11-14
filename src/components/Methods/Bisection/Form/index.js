@@ -31,21 +31,21 @@ const RESOLVE_NON_LINEAR_EQUATION = gql`
 	mutation nonLinearEquationResolver(
 		$method: String!
 		$fx: String
-		$a_interval: Float
-		$b_interval: Float
+		$intervalA: Float
+		$intervalB: Float
 		$tolerance: Float
 		$nmax: Int
-		$error_type: String
+		$errorType: String
 	) {
 		nonLinearEquationResolver(
 			input: {
 				method: $method
 				fx: $fx
-				a_interval: $a_interval
-				b_interval: $b_interval
+				intervalA: $intervalA
+				intervalB: $intervalB
 				tolerance: $tolerance
 				nmax: $nmax
-				error_type: $error_type
+				errorType: $errorType
 			}
 		) {
 			result
@@ -58,28 +58,37 @@ const validateSchema = () => {
 
 	return yup.object().shape({
 		fx: yup.string().required(required_message),
-		a_interval: yup.number().required(required_message),
-		b_interval: yup.number().required(required_message),
+		intervalA: yup.number().required(required_message),
+		intervalB: yup.number().required(required_message),
 		tolerance: yup.number().required(required_message),
 		nmax: yup.number().required(required_message),
 	})
 }
 
-const BisectionForm = () => {
+const BisectionForm = ({ onStart, onComplete }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
-
-	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
 
 	const initial_values = {
 		fx: common_initial_values.fx,
-		a_interval: common_initial_values.a_interval,
-		b_interval: common_initial_values.b_interval,
+		intervalA: common_initial_values.intervalA,
+		intervalB: common_initial_values.intervalB,
 		nmax: common_initial_values.nmax,
 		tolerance: common_initial_values.tolerance,
-		error_type: common_initial_values.error_type,
+		errorType: common_initial_values.errorType,
 	}
 
-	const handleSubmit = (values) => resolve_method({ variables: { ...values, method: 'bisection' } })
+	const handleSubmit = (values) => {
+		onStart()
+		resolve_method({ variables: { ...values, method: 'bisection' } })
+	}
+
+	const handleComplete = (value) => {
+		const result = value.nonLinearEquationResolver.result
+
+		onComplete(result)
+	}
+
+	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION, { onCompleted: handleComplete })
 
 	return (
 		<Formik initialValues={initial_values} onSubmit={handleSubmit} validationSchema={() => validateSchema()}>
@@ -95,7 +104,7 @@ const BisectionForm = () => {
 				<Paper sx={{ p: 2 }} elevation={0}>
 					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} gutter_bottom />
 					<ToleranceInput name="tolerance" />
-					<ErrorTypeInput name="error_type" />
+					<ErrorTypeInput name="errorType" />
 				</Paper>
 
 				<Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>

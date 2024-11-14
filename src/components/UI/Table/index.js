@@ -26,7 +26,7 @@ const Table = ({ rows, columns, loading }) => {
 				<TableHead>
 					<TableRow>
 						{columns.map((column) => (
-							<TableCell key={column.key} align={column.align || 'left'}>
+							<TableCell key={column.key} align={column.align || 'left'} sx={{ maxWidth: column.maxWidth || 'auto' }}>
 								{column.title}
 							</TableCell>
 						))}
@@ -45,7 +45,11 @@ const Table = ({ rows, columns, loading }) => {
 								}
 
 								return (
-									<TableCell key={column.key} align={column.align || 'left'}>
+									<TableCell
+										key={column.key}
+										align={column.align || 'left'}
+										sx={{ maxWidth: column.maxWidth || 'auto' }}
+									>
 										{value}
 									</TableCell>
 								)

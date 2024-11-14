@@ -38,8 +38,8 @@ const InputsContainer = styled.div`
 const IntervalInput = ({ form_control_props = {}, disabled }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.IntervalInput' })
 
-	const [field_a, meta_a] = useField({ name: 'a_interval' })
-	const [field_b, meta_b] = useField({ name: 'b_interval' })
+	const [field_a, meta_a] = useField({ name: 'intervalA' })
+	const [field_b, meta_b] = useField({ name: 'intervalB' })
 
 	const show_error = !!meta_a.error || !!meta_b.error
 

@@ -21,6 +21,8 @@ import Methods from '..'
 import IncrementalSearchForm from './Form'
 import Table from 'components/UI/Table'
 import { incrementalSearchRuby } from './codes'
+import colors from 'styles/colors'
+import { Alert } from '@mui/material'
 
 // Utils
 
@@ -29,7 +31,15 @@ const get_columns = (t) => [
 		key: 'interval',
 		title: t('columns.interval'),
 		align: 'center',
-		render: (value) => `[ ${value.x0} , ${value.x1} ]`,
+		render: (value) => (
+			<React.Fragment>
+				<span style={{ color: colors.GREY[50], fontSize: '1.4rem', marginRight: '3px' }}>[</span>
+				<span style={{ fontSize: '1rem' }}>{value.x0}</span>
+				<span style={{ margin: '0 4px', color: colors.GREY[50] }}>,</span>
+				<span style={{ fontSize: '1rem' }}>{value.x1}</span>
+				<span style={{ color: colors.GREY[50], fontSize: '1.4rem', marginLeft: '3px' }}>]</span>
+			</React.Fragment>
+		),
 	},
 	{ key: 'result', title: t('columns.result'), align: 'center', render: () => t('results.interval_found') },
 ]
@@ -37,8 +47,6 @@ const get_columns = (t) => [
 const MethodLogic = ({ t }) => {
 	const [rows, setRows] = useState([])
 	const [loading, setLoading] = useState(false)
-
-	console.log(rows)
 
 	return (
 		<div className="row" style={{ flexGrow: 1 }}>
@@ -53,7 +61,11 @@ const MethodLogic = ({ t }) => {
 			</div>
 
 			<div className="col-12 col-lg-7">
-				<Table rows={rows} columns={get_columns(t)} loading={loading} />
+				{rows.length > 0 ? (
+					<Table rows={rows} columns={get_columns(t)} loading={loading} />
+				) : (
+					<Alert severity="info">{t('empty_table')}</Alert>
+				)}
 			</div>
 		</div>
 	)
