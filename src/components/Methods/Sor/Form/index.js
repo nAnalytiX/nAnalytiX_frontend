@@ -48,7 +48,7 @@ const SorForm = ({ onComplete, onStart }) => {
 		} else {
 			setMatrixA(generateMatrix(matrix_size, matrix_size))
 			setMatrixB(generateMatrix(1, matrix_size))
-			setMatrixX0(generateMatrix(0, matrix_size))
+			setMatrixX0(generateMatrix(1, matrix_size))
 		}
 	}, [matrix_size])
 
