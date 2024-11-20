@@ -10,6 +10,11 @@ import Secant from 'components/Methods/Secant'
 import GaussSimple from 'components/Methods/GaussSimple'
 import GaussPartial from 'components/Methods/GaussPartial'
 import GaussTotal from 'components/Methods/GaussTotal'
+import FactorizationLuSimple from 'components/Methods/FactorizationLuSimple'
+import FactorizationLuPartial from 'components/Methods/FactorizationLuPartial'
+import Crout from 'components/Methods/Crout'
+import Doolittle from 'components/Methods/Doolittle'
+import Cholesky from 'components/Methods/Cholesky'
 
 const non_linear_equations = {
 	incremental_search: IncrementalSearch,
@@ -27,11 +32,11 @@ const linear_equations = {
 	gauss_simple: GaussSimple,
 	gauss_partial: GaussPartial,
 	gauss_total: GaussTotal,
-	simple_lu: null,
-	pivot_lu: null,
-	crout: null,
-	doolittle: null,
-	choolesky: null,
+	simple_lu: FactorizationLuSimple,
+	pivot_lu: FactorizationLuPartial,
+	crout: Crout,
+	doolittle: Doolittle,
+	cholesky: Cholesky,
 	jacobi: null,
 	gauss_seidel: null,
 	sor: null,

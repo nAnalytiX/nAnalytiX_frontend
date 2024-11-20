@@ -1,10 +1,10 @@
 /**
- * Translations for GaussTotal
+ * Translations for MethodsFactorizationLuSimple
  */
 
-const GaussTotal_T = {
+const FactorizationLuSimple_T = {
 	es: {
-		name: 'Eliminación Gaussiana (Pivoteo Total)',
+		name: 'Factorización LU Simple',
 		form: {
 			buttons: {
 				run: 'Correr Metodo',
@@ -17,7 +17,7 @@ const GaussTotal_T = {
 		},
 	},
 	en: {
-		name: 'Gaussian Elimination (Total Pivot)',
+		name: 'LU Factorization',
 		form: {
 			buttons: {
 				run: 'Run Method',
@@ -31,4 +31,4 @@ const GaussTotal_T = {
 	},
 }
 
-export default GaussTotal_T
+export default FactorizationLuSimple_T

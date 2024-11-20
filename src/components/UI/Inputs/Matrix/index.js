@@ -29,14 +29,14 @@ const Input = styled(TextField)`
 	}
 `
 
-const OpenParenthesis = styled.div`
+export const OpenParenthesis = styled.div`
 	width: 10px;
 	border-radius: 10px;
 	border-left: 2px solid ${colors.GREY[50]};
 	margin-right: 10px;
 `
 
-const CloseParenthesis = styled.div`
+export const CloseParenthesis = styled.div`
 	width: 10px;
 	border-radius: 10px;
 	border-right: 2px solid ${colors.GREY[50]};

@@ -42,14 +42,14 @@ const GaussPartialForm = ({ onComplete, onStart }) => {
 		onStart()
 		resolve_method({
 			variables: {
-				method: 'gauss_partial',
+				method: 'lu_simple',
 				matrixA: JSON.stringify(matrix_a),
 				vectorB: JSON.stringify(formatVector(matrix_b)),
 			},
 		})
 	}
 
-	const handleComplete = (value) => onComplete(value.nonLinearEquationResolver.result)
+	const handleComplete = (value) => onComplete(value.linearEquationResolver.result)
 
 	const [resolve_method] = useMutation(RESOLVE_LINEAR_EQUATION, { onCompleted: handleComplete })
 
@@ -78,6 +78,7 @@ const GaussPartialForm = ({ onComplete, onStart }) => {
 						setMatrixSize(4)
 						setMatrixA(a_default_value)
 						setMatrixB(b_default_value)
+						onComplete({})
 					}}
 				>
 					<RestartAlt />

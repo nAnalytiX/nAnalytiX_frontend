@@ -20,7 +20,7 @@ const linear_equations = [
 	'pivot_lu',
 	'crout',
 	'doolittle',
-	'choolesky',
+	'cholesky',
 	'jacobi',
 	'gauss_seidel',
 	'sor',

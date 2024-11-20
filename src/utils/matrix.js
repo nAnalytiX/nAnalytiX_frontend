@@ -19,16 +19,16 @@ export const formatVector = (matrix) => {
 }
 
 export const a_default_value = [
-	[2, -1, 0, 3],
-	[1, 0.5, 3, 8],
-	[0, 13, -2, 11],
-	[14, 5, -2, 3],
+	[4, -1, 0, 3],
+	[1, 15.5, 3, 8],
+	[0, -1.3, -4, 1.1],
+	[14, 5, -2, 30],
 ]
 
 export const b_default_value = [[1], [1], [1], [1]]
 
 export const RESOLVE_LINEAR_EQUATION = gql`
-	mutation nonLinearEquationResolver(
+	mutation linearEquationResolver(
 		$method: String!
 		$matrixA: JSON!
 		$vectorB: JSON!
@@ -36,7 +36,7 @@ export const RESOLVE_LINEAR_EQUATION = gql`
 		$tolerance: Float
 		$nmax: Int
 	) {
-		nonLinearEquationResolver(
+		linearEquationResolver(
 			input: {
 				method: $method
 				matrixA: $matrixA

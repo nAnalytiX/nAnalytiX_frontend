@@ -19,6 +19,11 @@ import Tolerance_T from 'components/UI/Inputs/Tolerance/translation'
 import ErrorTypeInput_T from 'components/UI/Inputs/ErrorType/translation'
 import IntervalInput_T from 'components/UI/Inputs/Interval/translation'
 import MatrixSize_T from 'components/UI/Inputs/MatrixSize/translation'
+import FactorizationLuSimple_T from 'components/Methods/FactorizationLuSimple/translation'
+import FactorizationLuPartial_T from 'components/Methods/FactorizationLuPartial/translation'
+import Crout_T from 'components/Methods/Crout/translation'
+import Cholesky_T from 'components/Methods/Cholesky/translation'
+import Doolittle_T from 'components/Methods/Doolittle/translation'
 
 const es = {
 	translation: {
@@ -50,7 +55,7 @@ const es = {
 					pivot_lu: 'Factorización LU con Pivote Parcial',
 					crout: 'Método Crout',
 					doolittle: 'Método Doolittle',
-					choolesky: 'Método Choolesky',
+					cholesky: 'Método Cholesky',
 					jacobi: 'Método Jacobi',
 					gauss_seidel: 'Método Gauss Seidel',
 					sor: 'Método Sor',
@@ -86,8 +91,13 @@ const es = {
 			GaussSimple: GaussSimple_T.es,
 			GaussPartial: GaussPartial_T.es,
 			GaussTotal: GaussTotal_T.es,
+			FactorizationLuSimple: FactorizationLuSimple_T.es,
+			FactorizationLuPartial: FactorizationLuPartial_T.es,
 			IntervalInput: IntervalInput_T.es,
 			MatrixSize: MatrixSize_T.es,
+			Crout: Crout_T.es,
+			Cholesky: Cholesky_T.es,
+			Doolittle: Doolittle_T.es,
 		},
 	},
 }
@@ -115,7 +125,7 @@ const en = {
 					pivot_lu: 'LU Factorization (Partial Pivoting)',
 					crout: "Crout's Method",
 					doolittle: "Doolittle's Method",
-					choolesky: "Cholesky's Method",
+					cholesky: "Cholesky's Method",
 					jacobi: "Jacobi's Method",
 					gauss_seidel: 'Gauss-Seidel Method',
 					sor: 'SOR Method',
@@ -154,6 +164,11 @@ const en = {
 			ErrorTypeInput: ErrorTypeInput_T.en,
 			IntervalInput: IntervalInput_T.en,
 			MatrixSize: MatrixSize_T.en,
+			FactorizationLuSimple: FactorizationLuSimple_T.en,
+			FactorizationLuPartial: FactorizationLuPartial_T.en,
+			Crout: Crout_T.en,
+			Cholesky: Cholesky_T.en,
+			Doolittle: Doolittle_T.en,
 		},
 	},
 }

@@ -28,7 +28,16 @@ const Title = ({ method_name, method_key }) => {
 	const current_method_index = methods_list_keys.findIndex((m) => method_key === m)
 
 	const handleChangeMethod = (new_index) => {
+		console.log(methods_list_keys[new_index].replace('_', '-'))
 		const new_route = `/methods/${methods_list_keys[new_index].replace('_', '-')}`
+		console.log(new_route)
+
+		navigate(new_route)
+	}
+
+	const handleNextMethod = () => {
+		console.log(methods_list_keys[current_method_index])
+		const new_route = `/methods/${methods_list_keys[current_method_index + 1].replace('_', '-')}`
 
 		navigate(new_route)
 	}
@@ -48,7 +57,7 @@ const Title = ({ method_name, method_key }) => {
 			</Typography>
 
 			<IconButton
-				onClick={() => handleChangeMethod(current_method_index + 1)}
+				onClick={handleNextMethod}
 				size="small"
 				sx={{ ml: '25px', visibility: current_method_index === methods_list_keys.length ? 'hidden' : 'visible' }}
 			>

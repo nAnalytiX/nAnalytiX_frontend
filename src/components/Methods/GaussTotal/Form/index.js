@@ -1,6 +1,6 @@
 /**
  *
- *  Methods/GaussSimple/Form
+ *  Methods/GaussTotal/Form
  *
  */
 
@@ -21,8 +21,8 @@ import { RestartAlt } from '@mui/icons-material'
 // Utils
 import { a_default_value, b_default_value, generateMatrix, formatVector, RESOLVE_LINEAR_EQUATION } from 'utils/matrix'
 
-const GaussPartialForm = ({ onComplete, onStart }) => {
-	const { t } = useTranslation('', { keyPrefix: 'components.GaussSimple.form' })
+const GaussTotalForm = ({ onComplete, onStart }) => {
+	const { t } = useTranslation('', { keyPrefix: 'components.GaussTotal.form' })
 
 	const [matrix_size, setMatrixSize] = useState(4)
 	const [matrix_a, setMatrixA] = useState(a_default_value)
@@ -42,7 +42,7 @@ const GaussPartialForm = ({ onComplete, onStart }) => {
 		onStart()
 		resolve_method({
 			variables: {
-				method: 'gauss_simple',
+				method: 'gauss_total',
 				matrixA: JSON.stringify(matrix_a),
 				vectorB: JSON.stringify(formatVector(matrix_b)),
 			},
@@ -92,4 +92,4 @@ const GaussPartialForm = ({ onComplete, onStart }) => {
 	)
 }
 
-export default GaussPartialForm
+export default GaussTotalForm

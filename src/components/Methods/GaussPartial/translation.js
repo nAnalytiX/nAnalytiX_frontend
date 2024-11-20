@@ -11,6 +11,10 @@ const GaussPartial_T = {
 				reset: 'Resetear Valores',
 			},
 		},
+		solution: {
+			step: 'Paso',
+			regressive: 'Después de aplicar la sustitución regresiva obtenemos',
+		},
 	},
 	en: {
 		name: 'Gaussian Elimination (Partial Pivot)',
@@ -19,6 +23,10 @@ const GaussPartial_T = {
 				run: 'Run Method',
 				reset: 'Reset Values',
 			},
+		},
+		solution: {
+			step: 'Step',
+			regressive: 'After applying regressive substitution we get',
 		},
 	},
 }
