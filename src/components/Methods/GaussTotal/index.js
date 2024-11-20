@@ -27,7 +27,8 @@ const GaussTotal = () => {
 
 	return (
 		<Methods
-			method={t('name')}
+			method_key="gauss_total"
+			name={t('name')}
 			methodElement={<React.Fragment />}
 			codeElement={<Codes ruby_code={gaussTotalRuby(t)} />}
 		/>

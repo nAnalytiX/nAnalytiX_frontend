@@ -18,6 +18,7 @@ import GaussTotal_T from 'components/Methods/GaussTotal/translation'
 import Tolerance_T from 'components/UI/Inputs/Tolerance/translation'
 import ErrorTypeInput_T from 'components/UI/Inputs/ErrorType/translation'
 import IntervalInput_T from 'components/UI/Inputs/Interval/translation'
+import MatrixSize_T from 'components/UI/Inputs/MatrixSize/translation'
 
 const es = {
 	translation: {
@@ -86,6 +87,7 @@ const es = {
 			GaussPartial: GaussPartial_T.es,
 			GaussTotal: GaussTotal_T.es,
 			IntervalInput: IntervalInput_T.es,
+			MatrixSize: MatrixSize_T.es,
 		},
 	},
 }
@@ -151,6 +153,7 @@ const en = {
 			GaussTotal: GaussTotal_T.en,
 			ErrorTypeInput: ErrorTypeInput_T.en,
 			IntervalInput: IntervalInput_T.en,
+			MatrixSize: MatrixSize_T.en,
 		},
 	},
 }

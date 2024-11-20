@@ -27,7 +27,8 @@ const GaussSimple = () => {
 
 	return (
 		<Methods
-			method={t('name')}
+			method_key="gauss_simple"
+			name={t('name')}
 			methodElement={<React.Fragment />}
 			codeElement={<Codes ruby_code={gaussSimpleRuby(t)} />}
 		/>

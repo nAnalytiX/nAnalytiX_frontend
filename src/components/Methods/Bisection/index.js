@@ -26,7 +26,7 @@ import Spinner from 'components/UI/Spinner'
 
 // Utils
 
-const get_columns = (t) => [
+export const get_columns = (t) => [
 	{
 		key: 'iterations',
 		title: t('columns.iterations'),

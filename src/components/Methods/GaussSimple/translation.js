@@ -4,7 +4,7 @@
 
 const GaussSimple_T = {
 	es: {
-		name: 'Eliminación Gaussiana',
+		name: 'Eliminación Gaussiana Simple',
 	},
 	en: {
 		name: 'Gaussian Elimination',

@@ -7,6 +7,9 @@ import IncrementalSearch from 'components/Methods/IncrementalSearch'
 import MultipleRoots from 'components/Methods/MultipleRoots'
 import Newton from 'components/Methods/Newton'
 import Secant from 'components/Methods/Secant'
+import GaussSimple from 'components/Methods/GaussSimple'
+import GaussPartial from 'components/Methods/GaussPartial'
+import GaussTotal from 'components/Methods/GaussTotal'
 
 const non_linear_equations = {
 	incremental_search: IncrementalSearch,
@@ -21,9 +24,9 @@ const non_linear_equations = {
 const non_linear_equations_keys = Object.keys(non_linear_equations)
 
 const linear_equations = {
-	gauss_simple: null,
-	gauss_partial: null,
-	gauss_total: null,
+	gauss_simple: GaussSimple,
+	gauss_partial: GaussPartial,
+	gauss_total: GaussTotal,
 	simple_lu: null,
 	pivot_lu: null,
 	crout: null,

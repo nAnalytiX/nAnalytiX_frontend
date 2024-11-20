@@ -15,7 +15,7 @@ const Methods_T = {
 				delta: 'Delta',
 				nmax: 'Iteraciónes Maximas',
 				derivate: 'Derivada',
-				second_derivate: 'Segunda Derivada',
+				secondDerivate: 'Segunda Derivada',
 			},
 			buttons: {
 				find_roots: 'Buscar Raíces',

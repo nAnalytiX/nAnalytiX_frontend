@@ -31,22 +31,22 @@ const RESOLVE_NON_LINEAR_EQUATION = gql`
 		$method: String!
 		$fx: String
 		$derivate: String
-		$second_derivate: String
+		$secondDerivate: String
 		$x0: Float
 		$tolerance: Float
 		$nmax: Int
-		$error_type: String
+		$errorType: String
 	) {
 		nonLinearEquationResolver(
 			input: {
 				method: $method
 				fx: $fx
 				derivate: $derivate
-				second_derivate: $second_derivate
+				secondDerivate: $secondDerivate
 				x0: $x0
 				tolerance: $tolerance
 				nmax: $nmax
-				error_type: $error_type
+				errorType: $errorType
 			}
 		) {
 			result
@@ -60,30 +60,39 @@ const validateSchema = () => {
 	return yup.object().shape({
 		fx: yup.string().required(required_message),
 		derivate: yup.string().required(required_message),
-		second_derivate: yup.string().required(required_message),
+		secondDerivate: yup.string().required(required_message),
 		x0: yup.number().required(required_message),
 		nmax: yup.number().required(required_message),
 		tolerance: yup.number().required(required_message),
-		error_type: yup.string().required(required_message),
+		errorType: yup.string().required(required_message),
 	})
 }
 
-const MultipleRootsForm = () => {
+const MultipleRootsForm = ({ onStart, onComplete }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
-
-	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
 
 	const initial_values = {
 		fx: 'exp(x) - x -1',
 		derivate: 'exp(x) - 1',
-		second_derivate: 'exp(x)',
+		secondDerivate: 'exp(x)',
 		x0: 1,
 		nmax: common_initial_values.nmax,
 		tolerance: common_initial_values.tolerance,
-		error_type: common_initial_values.error_type,
+		errorType: common_initial_values.errorType,
 	}
 
-	const handleSubmit = (values) => resolve_method({ variables: { ...values, method: 'newton' } })
+	const handleSubmit = (values) => {
+		onStart()
+		resolve_method({ variables: { ...values, method: 'multiple_roots' } })
+	}
+
+	const handleComplete = (value) => {
+		const result = value.nonLinearEquationResolver.result
+
+		onComplete(result)
+	}
+
+	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION, { onCompleted: handleComplete })
 
 	return (
 		<Formik initialValues={initial_values} onSubmit={handleSubmit} validationSchema={() => validateSchema()}>
@@ -101,8 +110,8 @@ const MultipleRootsForm = () => {
 					/>
 
 					<FunctionInput
-						name="second_derivate"
-						label={t('fields.second_derivate')}
+						name="secondDerivate"
+						label={t('fields.secondDerivate')}
 						adornment="f''(x)"
 						controlled
 						hide_actions
@@ -116,7 +125,7 @@ const MultipleRootsForm = () => {
 				<Paper sx={{ p: 2 }} elevation={0}>
 					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} gutter_bottom />
 					<ToleranceInput name="tolerance" />
-					<ErrorTypeInput name="error_type" />
+					<ErrorTypeInput name="errorType" />
 				</Paper>
 
 				<Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>

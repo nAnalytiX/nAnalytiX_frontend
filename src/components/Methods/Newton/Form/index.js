@@ -34,7 +34,7 @@ const RESOLVE_NON_LINEAR_EQUATION = gql`
 		$x0: Float
 		$tolerance: Float
 		$nmax: Int
-		$error_type: String
+		$errorType: String
 	) {
 		nonLinearEquationResolver(
 			input: {
@@ -44,7 +44,7 @@ const RESOLVE_NON_LINEAR_EQUATION = gql`
 				x0: $x0
 				tolerance: $tolerance
 				nmax: $nmax
-				error_type: $error_type
+				errorType: $errorType
 			}
 		) {
 			result
@@ -61,14 +61,12 @@ const validateSchema = () => {
 		x0: yup.number().required(required_message),
 		nmax: yup.number().required(required_message),
 		tolerance: yup.number().required(required_message),
-		error_type: yup.string().required(required_message),
+		errorType: yup.string().required(required_message),
 	})
 }
 
-const NewtonForm = () => {
+const NewtonForm = ({ onStart, onComplete }) => {
 	const { t } = useTranslation('', { keyPrefix: 'components.Methods.form' })
-
-	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION)
 
 	const initial_values = {
 		fx: common_initial_values.fx,
@@ -76,10 +74,21 @@ const NewtonForm = () => {
 		x0: 0.5,
 		nmax: common_initial_values.nmax,
 		tolerance: common_initial_values.tolerance,
-		error_type: common_initial_values.error_type,
+		errorType: common_initial_values.errorType,
 	}
 
-	const handleSubmit = (values) => resolve_method({ variables: { ...values, method: 'newton' } })
+	const handleSubmit = (values) => {
+		onStart()
+		resolve_method({ variables: { ...values, method: 'newton' } })
+	}
+
+	const handleComplete = (value) => {
+		const result = value.nonLinearEquationResolver.result
+
+		onComplete(result)
+	}
+
+	const [resolve_method] = useMutation(RESOLVE_NON_LINEAR_EQUATION, { onCompleted: handleComplete })
 
 	return (
 		<Formik initialValues={initial_values} onSubmit={handleSubmit} validationSchema={() => validateSchema()}>
@@ -96,7 +105,7 @@ const NewtonForm = () => {
 				<Paper sx={{ p: 2 }} elevation={0}>
 					<NumberInput name="nmax" label={t('fields.nmax')} adornment={{ start: 'NMax' }} gutter_bottom />
 					<ToleranceInput name="tolerance" />
-					<ErrorTypeInput name="error_type" />
+					<ErrorTypeInput name="errorType" />
 				</Paper>
 
 				<Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
