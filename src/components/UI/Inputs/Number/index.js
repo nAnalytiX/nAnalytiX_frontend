@@ -37,6 +37,7 @@ const NumberInput = ({
 	adornment = {},
 	gutter_bottom = false,
 	width,
+	hide_help = false,
 	...props
 }) => {
 	// const { t } = useTranslation('', { keyPrefix: 'components.Ui.Inputs.Number' })
@@ -79,9 +80,11 @@ const NumberInput = ({
 							{...props}
 						/>
 
-						<Tooltip title="Add" placement="right">
-							<Info color="primary" sx={{ ml: 2, cursor: 'help' }} />
-						</Tooltip>
+						{!hide_help && (
+							<Tooltip title="Add" placement="right">
+								<Info color="primary" sx={{ ml: 2, cursor: 'help' }} />
+							</Tooltip>
+						)}
 					</Box>
 
 					{show_error && <FormHelperText>{error}</FormHelperText>}

@@ -1,17 +1,15 @@
 /**
  *
- *  Ui/Inputs/Tolerance
+ *  Ui/Inputs/NormInput
  *
  */
 
 import React from 'react'
 
 // NPM Libraries
-import { Info } from '@mui/icons-material'
-import { Box, FormControl, Grid, MenuItem, Select, Tooltip, Typography } from '@mui/material'
-import { useField, useFormikContext } from 'formik'
+import { Box, FormControl, Grid, MenuItem, Select, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-// import PropTypes from 'prop-types'
+import { useField, useFormikContext } from 'formik'
 
 // GraphQL
 // import { useQuery } from 'hooks'
@@ -20,27 +18,15 @@ import { useTranslation } from 'react-i18next'
 // Components
 
 // Utils
-
-const tolerance_options = [
-	{ value: '1e-1', label: '-1' },
-	{ value: '1e-2', label: '-2' },
-	{ value: '1e-3', label: '-3' },
-	{ value: '1e-4', label: '-4' },
-	{ value: '1e-5', label: '-5' },
-	{ value: '1e-6', label: '-6' },
-	{ value: '1e-7', label: '-7' },
-	{ value: '1e-8', label: '-8' },
-	{ value: '1e-9', label: '-9' },
-	{ value: '1e-10', label: '-10' },
-	{ value: '1e-11', label: '-11' },
-	{ value: '1e-12', label: '-12' },
-	{ value: '1e-13', label: '-13' },
-	{ value: '1e-14', label: '-14' },
-	{ value: '1e-15', label: '-15' },
+const size_options = [
+	{ value: 1, label: '1' },
+	{ value: 2, label: '2' },
+	{ value: 3, label: '3' },
+	{ value: 'infinite', label: 'Inf.' },
 ]
 
-const ToleranceInput = ({ label, form_control_props = {}, disabled, hide_help = false, ...props }) => {
-	const { t } = useTranslation('', { keyPrefix: 'components.Tolerance' })
+const NormInput = ({ disabled, form_control_props = {}, ...props }) => {
+	const { t } = useTranslation('', { keyPrefix: 'components.NormInput' })
 
 	const form = useFormikContext()
 	const [field, meta] = useField({ ...props })
@@ -70,7 +56,6 @@ const ToleranceInput = ({ label, form_control_props = {}, disabled, hide_help = 
 						<Select
 							{...field}
 							value={value ?? ''}
-							label={label}
 							id={id}
 							onChange={(e) => {
 								const onChangeLogic = new Promise((resolve) => {
@@ -86,26 +71,18 @@ const ToleranceInput = ({ label, form_control_props = {}, disabled, hide_help = 
 								},
 							}}
 						>
-							{tolerance_options.map((opt) => {
+							{size_options.map((opt) => {
 								const { label, value } = opt
 
 								return (
 									<MenuItem key={value} value={value} sx={{ py: 1 }}>
 										<Box sx={{ display: 'flex' }}>
-											<Typography align="right">1 * 10</Typography>
-
-											<span style={{ fontSize: '0.7rem', marginTop: '-7px', marginLeft: '5px' }}>{label}</span>
+											<Typography align="right">{label}</Typography>
 										</Box>
 									</MenuItem>
 								)
 							})}
 						</Select>
-
-						{!hide_help && (
-							<Tooltip title="Add" placement="right">
-								<Info color="primary" sx={{ ml: 2, cursor: 'help' }} />
-							</Tooltip>
-						)}
 					</Box>
 				</Grid>
 			</Grid>
@@ -113,6 +90,6 @@ const ToleranceInput = ({ label, form_control_props = {}, disabled, hide_help = 
 	)
 }
 
-ToleranceInput.propTypes = {}
+NormInput.propTypes = {}
 
-export default ToleranceInput
+export default NormInput

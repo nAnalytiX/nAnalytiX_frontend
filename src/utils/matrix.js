@@ -26,6 +26,7 @@ export const a_default_value = [
 ]
 
 export const b_default_value = [[1], [1], [1], [1]]
+export const x0_default_value = [[0], [0], [0], [0]]
 
 export const RESOLVE_LINEAR_EQUATION = gql`
 	mutation linearEquationResolver(
@@ -35,6 +36,8 @@ export const RESOLVE_LINEAR_EQUATION = gql`
 		$vectorX0: JSON
 		$tolerance: Float
 		$nmax: Int
+		$norm: Int
+		$w: Float
 	) {
 		linearEquationResolver(
 			input: {
@@ -44,6 +47,8 @@ export const RESOLVE_LINEAR_EQUATION = gql`
 				vectorX0: $vectorX0
 				tolerance: $tolerance
 				nmax: $nmax
+				norm: $norm
+				w: $w
 			}
 		) {
 			result

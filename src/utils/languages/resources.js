@@ -24,6 +24,10 @@ import FactorizationLuPartial_T from 'components/Methods/FactorizationLuPartial/
 import Crout_T from 'components/Methods/Crout/translation'
 import Cholesky_T from 'components/Methods/Cholesky/translation'
 import Doolittle_T from 'components/Methods/Doolittle/translation'
+import Norm_T from 'components/UI/Inputs/Norm/translation'
+import Jacobi_T from 'components/Methods/Jacobi/translation'
+import GaussSeidel_T from 'components/Methods/GaussSeidel/translation'
+import Sor_T from 'components/Methods/Sor/translation'
 
 const es = {
 	translation: {
@@ -98,6 +102,10 @@ const es = {
 			Crout: Crout_T.es,
 			Cholesky: Cholesky_T.es,
 			Doolittle: Doolittle_T.es,
+			NormInput: Norm_T.es,
+			Jacobi: Jacobi_T.es,
+			GaussSeidel: GaussSeidel_T.es,
+			Sor: Sor_T.es,
 		},
 	},
 }
@@ -169,6 +177,10 @@ const en = {
 			Crout: Crout_T.en,
 			Cholesky: Cholesky_T.en,
 			Doolittle: Doolittle_T.en,
+			NormInput: Norm_T.en,
+			Jacobi: Jacobi_T.en,
+			GaussSeidel: GaussSeidel_T.en,
+			Sor: Sor_T.en,
 		},
 	},
 }

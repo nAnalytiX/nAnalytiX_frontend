@@ -123,7 +123,7 @@ const GaussSimple = () => {
 
 	return (
 		<Methods
-			method_key="gauss_partial"
+			method_key="gauss_simple"
 			name={t('name')}
 			methodElement={<MethodLogic t={t} />}
 			codeElement={<Codes ruby_code={gaussSimpleRuby(t)} />}

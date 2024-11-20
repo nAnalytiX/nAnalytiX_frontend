@@ -15,6 +15,9 @@ import FactorizationLuPartial from 'components/Methods/FactorizationLuPartial'
 import Crout from 'components/Methods/Crout'
 import Doolittle from 'components/Methods/Doolittle'
 import Cholesky from 'components/Methods/Cholesky'
+import Jacobi from 'components/Methods/Jacobi'
+import GaussSeidel from 'components/Methods/GaussSeidel'
+import Sor from 'components/Methods/Sor'
 
 const non_linear_equations = {
 	incremental_search: IncrementalSearch,
@@ -37,9 +40,9 @@ const linear_equations = {
 	crout: Crout,
 	doolittle: Doolittle,
 	cholesky: Cholesky,
-	jacobi: null,
-	gauss_seidel: null,
-	sor: null,
+	jacobi: Jacobi,
+	gauss_seidel: GaussSeidel,
+	sor: Sor,
 	vandermonde: null,
 }
 
