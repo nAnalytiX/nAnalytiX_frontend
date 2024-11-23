@@ -78,28 +78,29 @@ const Solution = ({ solution: { iterations, T, C, spectral_radius }, t }) => {
 				</Typography>
 
 				<div className="d-flex flex-column align-items-center">
-					{iterations.map((iteration, index) => (
-						<div key={index} className="d-flex mb-4">
-							<div className="d-flex flex-column">
-								<Typography variant="caption" sx={{ fontSize: '1rem', mr: '10px', mt: '15px' }}>
-									{t('solution.iteration')} {iteration.iteration}
-								</Typography>
-								<Typography variant="caption" sx={{ fontSize: '1rem', mr: '10px', mt: '15px' }}>
-									{t('solution.error')} {iteration.error}
-								</Typography>
-							</div>
-
-							<OpenParenthesis />
-							<div className="d-flex flex-column">
-								{iteration.value.map((element, index) => (
-									<Typography key={index} align="center" sx={{ lineHeight: '3rem' }}>
-										{element}
+					{iterations &&
+						iterations.map((iteration, index) => (
+							<div key={index} className="d-flex mb-4">
+								<div className="d-flex flex-column">
+									<Typography variant="caption" sx={{ fontSize: '1rem', mr: '10px', mt: '15px' }}>
+										{t('solution.iteration')} {iteration.iteration}
 									</Typography>
-								))}
+									<Typography variant="caption" sx={{ fontSize: '1rem', mr: '10px', mt: '15px' }}>
+										{t('solution.error')} {iteration.error}
+									</Typography>
+								</div>
+
+								<OpenParenthesis />
+								<div className="d-flex flex-column">
+									{iteration.value.map((element, index) => (
+										<Typography key={index} align="center" sx={{ lineHeight: '3rem' }}>
+											{element}
+										</Typography>
+									))}
+								</div>
+								<CloseParenthesis />
 							</div>
-							<CloseParenthesis />
-						</div>
-					))}
+						))}
 				</div>
 			</Paper>
 		</Box>

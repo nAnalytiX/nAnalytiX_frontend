@@ -18,6 +18,12 @@ import Cholesky from 'components/Methods/Cholesky'
 import Jacobi from 'components/Methods/Jacobi'
 import GaussSeidel from 'components/Methods/GaussSeidel'
 import Sor from 'components/Methods/Sor'
+import Vandermonde from 'components/Methods/Vandermonde'
+import DiffDivide from 'components/Methods/DiffDivide'
+import Lagrange from 'components/Methods/Lagrange'
+import SplineLinear from 'components/Methods/SplineLinear'
+import SplineCubic from 'components/Methods/SplineCubic'
+import SplineSquare from 'components/Methods/SplineSquare'
 
 const non_linear_equations = {
 	incremental_search: IncrementalSearch,
@@ -43,17 +49,17 @@ const linear_equations = {
 	jacobi: Jacobi,
 	gauss_seidel: GaussSeidel,
 	sor: Sor,
-	vandermonde: null,
+	vandermonde: Vandermonde,
 }
 
 const linear_equations_keys = Object.keys(linear_equations)
 
 const interpolation = {
-	diff_divide: null,
-	lagrange: null,
-	linear_spline: null,
-	square_spline: null,
-	cubic_spline: null,
+	diff_divide: DiffDivide,
+	lagrange: Lagrange,
+	linear_spline: SplineLinear,
+	square_spline: SplineSquare,
+	cubic_spline: SplineCubic,
 }
 
 const interpolation_keys = Object.keys(interpolation)

@@ -21,7 +21,7 @@ import { TextField, Typography } from '@mui/material'
 
 // Utils
 
-const Input = styled(TextField)`
+export const Input = styled(TextField)`
 	width: auto;
 
 	input {

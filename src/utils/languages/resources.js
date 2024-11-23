@@ -28,6 +28,12 @@ import Norm_T from 'components/UI/Inputs/Norm/translation'
 import Jacobi_T from 'components/Methods/Jacobi/translation'
 import GaussSeidel_T from 'components/Methods/GaussSeidel/translation'
 import Sor_T from 'components/Methods/Sor/translation'
+import Vandermonde_T from 'components/Methods/Vandermonde/translation'
+import DiffDivide_T from 'components/Methods/DiffDivide/translation'
+import Lagrange_T from 'components/Methods/Lagrange/translation'
+import SplineLinear_T from 'components/Methods/SplineLinear/translation'
+import SplineSquare_T from 'components/Methods/SplineSquare/translation'
+import SplineCubic_T from 'components/Methods/SplineCubic/translation'
 
 const es = {
 	translation: {
@@ -106,6 +112,12 @@ const es = {
 			Jacobi: Jacobi_T.es,
 			GaussSeidel: GaussSeidel_T.es,
 			Sor: Sor_T.es,
+			Vandermonde: Vandermonde_T.es,
+			DiffDivide: DiffDivide_T.es,
+			Lagrange: Lagrange_T.es,
+			SplineLinear: SplineLinear_T.es,
+			SplineSquare: SplineSquare_T.es,
+			SplineCubic: SplineCubic_T.es,
 		},
 	},
 }
@@ -181,6 +193,12 @@ const en = {
 			Jacobi: Jacobi_T.en,
 			GaussSeidel: GaussSeidel_T.en,
 			Sor: Sor_T.en,
+			Vandermonde: Vandermonde_T.en,
+			DiffDivide: DiffDivide_T.en,
+			Lagrange: Lagrange_T.en,
+			SplineLinear: SplineLinear_T.en,
+			SplineSquare: SplineSquare_T.en,
+			SplineCubic: SplineCubic_T.en,
 		},
 	},
 }
